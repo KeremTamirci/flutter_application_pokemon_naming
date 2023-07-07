@@ -44,20 +44,37 @@ class _MyHomePageState extends State<MyHomePage> {
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          scrolledUnderElevation: 0,
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-        ),
+        body: Stack(children: [
+          Center(
+            child: mainArea,
+          ),
+          SafeArea(
+            child: Positioned(
+              top: 10,
+              child: Builder(builder: (context) {
+                return IconButton(
+                  color: Colors.black87,
+                  icon: Icon(Icons.menu),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                );
+              }),
+            ),
+          )
+        ]),
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
+              SizedBox(
+                height: 120,
+                child: const DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.amber,
+                  ),
+                  child: Text('Drawer Header'),
                 ),
-                child: Text('Drawer Header'),
               ),
               ListTile(
                 title: const Text('Home'),
@@ -85,9 +102,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
-        ),
-        body: Center(
-          child: mainArea,
         ),
         bottomNavigationBar: Theme(
           data: Theme.of(context).copyWith(

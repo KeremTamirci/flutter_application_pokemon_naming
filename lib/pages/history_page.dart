@@ -19,7 +19,7 @@ class HistoryPage extends StatelessWidget {
     return ListView(
       children: [
         Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.only(left: 40, top: 40),
           child: Text(
             'You have generated '
             '${appState.history.length} words:',
