@@ -5,7 +5,7 @@ import '../main.dart';
 
 import 'package:flutter/material.dart';
 
-import '../modals/my_app_state.dart';
+import '../models/my_app_state.dart';
 import '../pages/pokemon_page.dart';
 import '../widgets/favorite_list_dialog.dart';
 import '../widgets/grid_view_widget.dart';

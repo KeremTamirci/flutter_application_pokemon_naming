@@ -1,8 +1,8 @@
-import 'modals/data_scraper.dart';
+import 'models/data_scraper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:dio/dio.dart';
-import 'modals/my_app_state.dart';
+import 'models/my_app_state.dart';
 import 'pages/my_home_page.dart';
 
 final dio = Dio();
