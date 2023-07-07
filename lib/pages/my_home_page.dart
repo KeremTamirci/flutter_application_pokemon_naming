@@ -59,7 +59,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   decoration: BoxDecoration(
                     color: Colors.deepPurple,
                   ),
-                  child: Text('Drawer Header'),
+                  child: Text(
+                    'Drawer Header',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
               ListTile(
