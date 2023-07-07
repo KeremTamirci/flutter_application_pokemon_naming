@@ -21,7 +21,6 @@ var length1 = 0;
 // modals, widgets, pages
 void main() {
   getHttp();
-  print("Bu da print işte");
   pokemonInit();
   runApp(MyApp());
 }
