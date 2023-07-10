@@ -1,17 +1,14 @@
 import 'package:dio/dio.dart';
 
 var urlList = [];
-var pokemonStatList = [];
-var pokemonStatMap = {};
-
-var pokemonMap = {};
-
-var pokemonimgCount = 0;
-
-final dio = Dio();
 var jsonList = [];
 var pokemonList = [];
+
+var pokemonMap = {};
+final dio = Dio();
+
 int count = 0;
+int pokemonimgCount = 0;
 var length1 = 0;
 
 void main() {
@@ -69,21 +66,10 @@ Future<void> fillPokemonMap() async {
   }
 }
 
-Future<void> testFunc() async {
-  for (var x = 0; x < pokemonStatList.length; x++) {
-//    print(pokemonStatList[x]);
-  }
-}
-
 Future<void> pokemonInit() async {
   await getPokemon();
   await fillURL();
-//  await getPokemonimg();
-//  await getPokemonStats();
   await fillPokemonMap();
-//  print(pokemonMap);
-  await testFunc();
   pokemonList.shuffle();
   print("Done");
-//  pokemonimgList.shuffle();
 }
