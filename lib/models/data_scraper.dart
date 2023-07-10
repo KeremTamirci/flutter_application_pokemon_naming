@@ -6,6 +6,8 @@ var pokemonStatMap = {};
 
 var pokemonMap = {};
 
+var pokemonimgCount = 0;
+
 void main() {
 //  getHttp();
   print("Bu da print işte");
@@ -47,6 +49,7 @@ Future<void> fillPokemonMap() async {
     final response = await dio.get(url);
     name = pokemonList[i]["name"];
     if (response.statusCode == 200) {
+      pokemonimgCount++;
       pokemonMap[name] = {};
       pokemonMap[name]["img"] = response.data["sprites"]["front_default"];
       pokemonMap[name]["stats"] = [
@@ -69,6 +72,7 @@ Future<void> testFunc() async {
 Future<void> pokemonInit() async {
   await getPokemon();
   await fillURL();
+//  await getPokemonimg();
 //  await getPokemonStats();
   await fillPokemonMap();
 //  print(pokemonMap);

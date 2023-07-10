@@ -23,10 +23,10 @@ class _TestPageState extends State<TestPage> {
       color: theme.colorScheme.primary,
     );
     var appState = context.watch<MyAppState>();
-    if (count <= pokemonimgList.length) {
+    if (count <= pokemonimgCount) {
       length1 = count;
     } else {
-      count = pokemonimgList.length;
+      count = pokemonimgCount;
     }
     nameToAdd = WordPair("Nameless", " ");
 
