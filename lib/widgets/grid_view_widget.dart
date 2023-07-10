@@ -1,5 +1,5 @@
-import '../main.dart';
 import 'package:flutter/material.dart';
+import '../models/data_scraper.dart';
 import '../pages/details_page.dart';
 
 var pokemonIndex = 0;
@@ -49,14 +49,17 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                       child: Padding(
                         padding: const EdgeInsets.all(15),
                         child: Image.network(
-                          pokemonimgList[index],
+                          pokemonMap[pokemonList[index]["name"]]["img"],
+//                          pokemonimgList[index],
                           fit: BoxFit.fitWidth,
                         ),
                       ),
                     ),
                     Center(
                       child: Text(
-                        pokemonNameList[index].asPascalCase,
+                        pokemonMap[pokemonList[index]["name"]]["given_name"]
+                            .asPascalCase,
+//                        pokemonNameList[index].asPascalCase,
                         style: widget.style,
                       ),
                     ),

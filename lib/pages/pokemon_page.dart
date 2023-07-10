@@ -1,9 +1,9 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/data_scraper.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart';
-import '../modals/my_app_state.dart';
+import '../models/my_app_state.dart';
 import '../widgets/favorite_list_dialog.dart';
 import '../widgets/grid_view_widget.dart';
 
@@ -22,10 +22,10 @@ class _TestPageState extends State<TestPage> {
       color: theme.colorScheme.primary,
     );
     var appState = context.watch<MyAppState>();
-    if (count <= pokemonimgList.length) {
+    if (count <= pokemonimgCount) {
       length1 = count;
     } else {
-      count = pokemonimgList.length;
+      count = pokemonimgCount;
     }
     nameToAdd = WordPair("Nameless", " ");
 
@@ -53,7 +53,8 @@ class _TestPageState extends State<TestPage> {
                       width: 200,
                       height: 200,
                       child: Image.network(
-                        pokemonimgList[length1],
+                        pokemonMap[pokemonList[length1]["name"]]["img"],
+//                        pokemonimgList[length1],
                         fit: BoxFit.contain,
                       ),
                     ),

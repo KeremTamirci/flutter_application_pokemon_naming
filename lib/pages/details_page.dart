@@ -1,14 +1,13 @@
 import 'package:english_words/english_words.dart';
+import 'package:flutter_application_1/models/data_scraper.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart';
-
 import 'package:flutter/material.dart';
-
-import '../modals/my_app_state.dart';
+import '../models/my_app_state.dart';
 import '../pages/pokemon_page.dart';
 import '../widgets/favorite_list_dialog.dart';
 import '../widgets/grid_view_widget.dart';
+import '../widgets/rating_widget.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({super.key});
@@ -16,9 +15,10 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
+    var mapLocation = pokemonMap[pokemonList[pokemonIndex]["name"]];
     return Scaffold(
       appBar: AppBar(
-        title: Text(pokemonNameList[pokemonIndex].asPascalCase),
+        title: Text(mapLocation["given_name"].asPascalCase),
       ),
       body: Center(
         child: Column(
@@ -26,9 +26,14 @@ class DetailsPage extends StatelessWidget {
             SizedBox(
               width: 250,
               child: Image.network(
-                pokemonimgList[pokemonIndex],
+                mapLocation["img"],
+//                pokemonimgList[pokemonIndex],
                 fit: BoxFit.fitWidth,
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: RatingDetail(),
             ),
             ElevatedButton(
                 onPressed: () {
