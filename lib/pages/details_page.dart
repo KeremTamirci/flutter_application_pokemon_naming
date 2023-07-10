@@ -11,7 +11,6 @@ import '../models/my_app_state.dart';
 import '../pages/pokemon_page.dart';
 import '../widgets/favorite_list_dialog.dart';
 import '../widgets/grid_view_widget.dart';
-import '../models/data_scraper.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({super.key});
@@ -29,7 +28,8 @@ class DetailsPage extends StatelessWidget {
             SizedBox(
               width: 250,
               child: Image.network(
-                pokemonimgList[pokemonIndex],
+                pokemonMap[pokemonList[pokemonIndex]["name"]]["img"],
+//                pokemonimgList[pokemonIndex],
                 fit: BoxFit.fitWidth,
               ),
             ),
@@ -39,7 +39,9 @@ class DetailsPage extends StatelessWidget {
                   width: 300,
                   child: Center(
                     child: RatingBarIndicator(
-                      rating: (pokemonStatList[0][0] / 20),
+                      rating: (pokemonMap[pokemonList[pokemonIndex]["name"]]
+                              ["stats"][0] /
+                          20),
                       itemBuilder: (context, index) => Icon(
                         Icons.star,
                         color: Colors.amber,
@@ -54,7 +56,9 @@ class DetailsPage extends StatelessWidget {
                   width: 300,
                   child: Center(
                     child: RatingBarIndicator(
-                      rating: (pokemonStatList[0][1] / 20),
+                      rating: (pokemonMap[pokemonList[pokemonIndex]["name"]]
+                              ["stats"][1] /
+                          20),
                       itemBuilder: (context, index) => Icon(
                         Icons.star,
                         color: Colors.amber,
@@ -69,7 +73,9 @@ class DetailsPage extends StatelessWidget {
                   width: 300,
                   child: Center(
                     child: RatingBarIndicator(
-                      rating: (pokemonStatList[0][2] / 20),
+                      rating: (pokemonMap[pokemonList[pokemonIndex]["name"]]
+                              ["stats"][2] /
+                          20),
                       itemBuilder: (context, index) => Icon(
                         Icons.star,
                         color: Colors.amber,
