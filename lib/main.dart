@@ -1,18 +1,8 @@
 import 'models/data_scraper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:dio/dio.dart';
 import 'models/my_app_state.dart';
 import 'pages/my_home_page.dart';
-
-final dio = Dio();
-var jsonList;
-var pokemonList;
-var pokemonimgList = [];
-var pokemonNameList = [];
-var availableNames = [];
-int count = 0;
-var length1 = 0;
 
 // ListView.builder indexi veriyor bu şekilde yapınca
 // Belli bir model oluşturup da yapılabilir valueları olur. (image, id, name etc.)

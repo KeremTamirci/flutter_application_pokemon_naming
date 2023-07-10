@@ -2,8 +2,6 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter_application_1/models/data_scraper.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart';
-
 import 'package:flutter/material.dart';
 import '../models/my_app_state.dart';
 import '../pages/pokemon_page.dart';

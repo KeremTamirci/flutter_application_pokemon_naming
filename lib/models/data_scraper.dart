@@ -1,4 +1,4 @@
-import '../main.dart';
+import 'package:dio/dio.dart';
 
 var urlList = [];
 var pokemonStatList = [];
@@ -7,6 +7,15 @@ var pokemonStatMap = {};
 var pokemonMap = {};
 
 var pokemonimgCount = 0;
+
+final dio = Dio();
+var jsonList;
+var pokemonList;
+var pokemonimgList = [];
+var pokemonNameList = [];
+var availableNames = [];
+int count = 0;
+var length1 = 0;
 
 void main() {
 //  getHttp();
