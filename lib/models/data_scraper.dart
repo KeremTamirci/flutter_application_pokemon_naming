@@ -9,11 +9,8 @@ var pokemonMap = {};
 var pokemonimgCount = 0;
 
 final dio = Dio();
-var jsonList;
-var pokemonList;
-var pokemonimgList = [];
-var pokemonNameList = [];
-var availableNames = [];
+var jsonList = [];
+var pokemonList = [];
 int count = 0;
 var length1 = 0;
 
