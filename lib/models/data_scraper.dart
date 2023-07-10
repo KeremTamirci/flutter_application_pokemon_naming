@@ -1,6 +1,7 @@
 import '../main.dart';
 
 var urlList = [];
+var pokemonStatList = [];
 
 void main() {
 //  getHttp();
@@ -57,11 +58,22 @@ Future<void> getPokemonStats() async {
   for (var i = 0; i < urlList.length; i++) {
     url = urlList[i];
     final statresponse = await dio.get(url);
-    print(statresponse.data["stats"]);
+    //print(statresponse.data["stats"]);
     if (statresponse.statusCode == 200) {
+      pokemonStatList.add([
+        statresponse.data["stats"][0]["base_stat"],
+        statresponse.data["stats"][1]["base_stat"],
+        statresponse.data["stats"][2]["base_stat"]
+      ]);
     } else {
       print(statresponse.statusCode);
     }
+  }
+}
+
+Future<void> testFunc() async {
+  for (var x in pokemonStatList) {
+    print(x);
   }
 }
 
@@ -70,5 +82,6 @@ Future<void> pokemonInit() async {
   await fillURL();
   await getPokemonimg();
   await getPokemonStats();
+  await testFunc();
   pokemonimgList.shuffle();
 }
