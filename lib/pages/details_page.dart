@@ -5,12 +5,11 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
 import '../models/my_app_state.dart';
 import '../pages/pokemon_page.dart';
 import '../widgets/favorite_list_dialog.dart';
 import '../widgets/grid_view_widget.dart';
+import '../widgets/rating_widget.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({super.key});
@@ -34,61 +33,7 @@ class DetailsPage extends StatelessWidget {
                 fit: BoxFit.fitWidth,
               ),
             ),
-            Column(
-              children: [
-                SizedBox(
-                  width: 300,
-                  child: Center(
-                    child: RatingBarIndicator(
-                      rating: (pokemonMap[pokemonList[pokemonIndex]["name"]]
-                              ["stats"][0] /
-                          20),
-                      itemBuilder: (context, index) => Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      itemCount: 5,
-                      itemSize: 30.0,
-                      direction: Axis.horizontal,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 300,
-                  child: Center(
-                    child: RatingBarIndicator(
-                      rating: (pokemonMap[pokemonList[pokemonIndex]["name"]]
-                              ["stats"][1] /
-                          20),
-                      itemBuilder: (context, index) => Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      itemCount: 5,
-                      itemSize: 30.0,
-                      direction: Axis.horizontal,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 300,
-                  child: Center(
-                    child: RatingBarIndicator(
-                      rating: (pokemonMap[pokemonList[pokemonIndex]["name"]]
-                              ["stats"][2] /
-                          20),
-                      itemBuilder: (context, index) => Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      itemCount: 5,
-                      itemSize: 30.0,
-                      direction: Axis.horizontal,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            RatingDetail(),
             ElevatedButton(
                 onPressed: () {
                   showDialog(
