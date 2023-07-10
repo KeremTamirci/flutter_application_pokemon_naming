@@ -1,5 +1,7 @@
 import '../main.dart';
 
+var urlList = [];
+
 void main() {
 //  getHttp();
   print("Bu da print işte");
@@ -13,6 +15,12 @@ void getHttp() async {
     jsonList = response.data["products"] as List;
   } else {
     print(response.statusCode);
+  }
+}
+
+Future<void> fillURL() async {
+  for (var i = 0; i < pokemonList.length; i++) {
+    urlList.add(pokemonList[i]["url"]);
   }
 }
 
@@ -34,7 +42,7 @@ Future<void> getPokemonimg() async {
 //    await getPokemonimg(pokemonList[i]["url"]);
     url = pokemonList[i]["url"];
     final imgresponse = await dio.get(url);
-    print(imgresponse.data["sprites"]["front_default"]);
+//    print(imgresponse.data["sprites"]["front_default"]);
     if (imgresponse.statusCode == 200) {
       pokemonimgList.add(imgresponse.data["sprites"]["front_default"]);
 //    print(pokemonimgList);
@@ -44,8 +52,23 @@ Future<void> getPokemonimg() async {
   }
 }
 
+Future<void> getPokemonStats() async {
+  var url;
+  for (var i = 0; i < urlList.length; i++) {
+    url = urlList[i];
+    final statresponse = await dio.get(url);
+    print(statresponse.data["stats"]);
+    if (statresponse.statusCode == 200) {
+    } else {
+      print(statresponse.statusCode);
+    }
+  }
+}
+
 Future<void> pokemonInit() async {
   await getPokemon();
+  await fillURL();
   await getPokemonimg();
+  await getPokemonStats();
   pokemonimgList.shuffle();
 }
