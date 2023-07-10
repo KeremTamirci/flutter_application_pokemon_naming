@@ -17,10 +17,10 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
+    var mapLocation = pokemonMap[pokemonList[pokemonIndex]["name"]];
     return Scaffold(
       appBar: AppBar(
-        title: Text(pokemonMap[pokemonList[pokemonIndex]["name"]]["given_name"]
-            .asPascalCase),
+        title: Text(mapLocation["given_name"].asPascalCase),
       ),
       body: Center(
         child: Column(
@@ -28,7 +28,7 @@ class DetailsPage extends StatelessWidget {
             SizedBox(
               width: 250,
               child: Image.network(
-                pokemonMap[pokemonList[pokemonIndex]["name"]]["img"],
+                mapLocation["img"],
 //                pokemonimgList[pokemonIndex],
                 fit: BoxFit.fitWidth,
               ),
