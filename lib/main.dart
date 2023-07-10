@@ -18,7 +18,7 @@ var length1 = 0;
 // Belli bir model oluşturup da yapılabilir valueları olur. (image, id, name etc.)
 // uid pubdev'den bulunabilir.
 // freezed_annotation package
-// modals, widgets, pages
+// models, widgets, pages
 void main() {
   getHttp();
   pokemonInit();

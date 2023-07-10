@@ -1,14 +1,17 @@
 import 'package:english_words/english_words.dart';
+import 'package:flutter_application_1/models/data_scraper.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../models/my_app_state.dart';
 import '../pages/pokemon_page.dart';
 import '../widgets/favorite_list_dialog.dart';
 import '../widgets/grid_view_widget.dart';
+import '../models/data_scraper.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({super.key});
@@ -29,6 +32,55 @@ class DetailsPage extends StatelessWidget {
                 pokemonimgList[pokemonIndex],
                 fit: BoxFit.fitWidth,
               ),
+            ),
+            Column(
+              children: [
+                SizedBox(
+                  width: 300,
+                  child: Center(
+                    child: RatingBarIndicator(
+                      rating: (pokemonStatList[0][0] / 20),
+                      itemBuilder: (context, index) => Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      itemCount: 5,
+                      itemSize: 30.0,
+                      direction: Axis.horizontal,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 300,
+                  child: Center(
+                    child: RatingBarIndicator(
+                      rating: (pokemonStatList[0][1] / 20),
+                      itemBuilder: (context, index) => Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      itemCount: 5,
+                      itemSize: 30.0,
+                      direction: Axis.horizontal,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 300,
+                  child: Center(
+                    child: RatingBarIndicator(
+                      rating: (pokemonStatList[0][2] / 20),
+                      itemBuilder: (context, index) => Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      itemCount: 5,
+                      itemSize: 30.0,
+                      direction: Axis.horizontal,
+                    ),
+                  ),
+                ),
+              ],
             ),
             ElevatedButton(
                 onPressed: () {
