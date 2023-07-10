@@ -19,9 +19,9 @@ var length1 = 0;
 // uid pubdev'den bulunabilir.
 // freezed_annotation package
 // models, widgets, pages
-void main() {
+Future<void> main() async {
   getHttp();
-  pokemonInit();
+  await pokemonInit();
   runApp(MyApp());
 }
 

@@ -119,5 +119,7 @@ Future<void> pokemonInit() async {
   await fillPokemonMap();
 //  print(pokemonMap);
   await testFunc();
-  pokemonimgList.shuffle();
+  pokemonList.shuffle();
+  print("Done");
+//  pokemonimgList.shuffle();
 }
