@@ -16,15 +16,15 @@ class RatingDetail extends StatelessWidget {
     return Column(
       children: [
         RatingWidget(
-          stat: Text("HP"),
+          statName: Text("HP"),
           rating: (mapLocation[0] / 20),
         ),
         RatingWidget(
-          stat: Text("Attack"),
+          statName: Text("Attack"),
           rating: (mapLocation[1] / 20),
         ),
         RatingWidget(
-          stat: Text("Defence"),
+          statName: Text("Defence"),
           rating: (mapLocation[2] / 20),
         ),
       ],
@@ -34,18 +34,18 @@ class RatingDetail extends StatelessWidget {
 
 class RatingWidget extends StatelessWidget {
   final double rating;
-  final Text stat;
+  final Text statName;
 
   RatingWidget({
     super.key,
-    required this.stat,
+    required this.statName,
     required this.rating,
   });
 
   @override
   Widget build(BuildContext context) {
     return Wrap(alignment: WrapAlignment.center, children: [
-      SizedBox(width: 60, child: stat),
+      SizedBox(width: 60, child: statName),
       SizedBox(
         width: 300,
         child: Center(
