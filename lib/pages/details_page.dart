@@ -33,7 +33,10 @@ class DetailsPage extends StatelessWidget {
                 fit: BoxFit.fitWidth,
               ),
             ),
-            RatingDetail(),
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: RatingDetail(),
+            ),
             ElevatedButton(
                 onPressed: () {
                   showDialog(
