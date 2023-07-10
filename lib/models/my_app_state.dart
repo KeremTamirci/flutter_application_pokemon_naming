@@ -2,6 +2,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 import '../main.dart';
+import 'data_scraper.dart';
 
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
@@ -34,6 +35,8 @@ class MyAppState extends ChangeNotifier {
   }
 
   void addPokemonName(pokemonName, index) {
+    pokemonMap[pokemonList[index]["name"]]["given_name"] = pokemonName;
+    print(pokemonMap[pokemonList[index]["name"]]);
     if (index == length1) {
       pokemonNameList.add(pokemonName);
     } else {

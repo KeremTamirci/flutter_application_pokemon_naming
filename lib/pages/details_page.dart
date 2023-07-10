@@ -20,7 +20,8 @@ class DetailsPage extends StatelessWidget {
     var appState = context.watch<MyAppState>();
     return Scaffold(
       appBar: AppBar(
-        title: Text(pokemonNameList[pokemonIndex].asPascalCase),
+        title: Text(pokemonMap[pokemonList[pokemonIndex]["name"]]["given_name"]
+            .asPascalCase),
       ),
       body: Center(
         child: Column(
