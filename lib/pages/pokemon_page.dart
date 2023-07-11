@@ -55,7 +55,8 @@ class _TestPageState extends State<TestPage> {
                         width: 200,
                         height: 200,
                         child: Image.network(
-                          pokemonMap[pokemonList[length1]["name"]]["img"],
+                          modelPokemonList[length1].sprites.front_default,
+//                          pokemonMap[pokemonList[length1]["name"]]["img"],
 //                        pokemonimgList[length1],
                           fit: BoxFit.contain,
                         ),

@@ -49,7 +49,8 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                       child: Padding(
                         padding: const EdgeInsets.all(15),
                         child: Image.network(
-                          pokemonMap[pokemonList[index]["name"]]["img"],
+                          modelPokemonList[index].sprites.front_default,
+//                          pokemonMap[pokemonList[index]["name"]]["img"],
 //                          pokemonimgList[index],
                           fit: BoxFit.fitWidth,
                         ),

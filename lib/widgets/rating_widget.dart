@@ -12,19 +12,23 @@ class RatingDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var mapLocation = pokemonMap[pokemonList[pokemonIndex]["name"]]["stats"];
+    var pokemonStats = modelPokemonList[pokemonIndex].stats;
     return Column(
       children: [
         RatingWidget(
           statName: Text("HP"),
-          rating: (mapLocation[0] / 20),
+//          rating: (mapLocation[0] / 20),
+          rating: (pokemonStats[0].base_stat / 20),
         ),
         RatingWidget(
           statName: Text("Attack"),
-          rating: (mapLocation[1] / 20),
+//          rating: (mapLocation[1] / 20),
+          rating: (pokemonStats[1].base_stat / 20),
         ),
         RatingWidget(
           statName: Text("Defence"),
-          rating: (mapLocation[2] / 20),
+//          rating: (mapLocation[2] / 20),
+          rating: (pokemonStats[2].base_stat / 20),
         ),
       ],
     );
