@@ -8,7 +8,7 @@ var pokemonList = [];
 var modelPokemonList = [];
 var pokemonNames = [];
 
-var pokemonMap = {};
+//var pokemonMap = {};
 final dio = Dio();
 
 int count = 0;
@@ -66,13 +66,13 @@ Future<void> fillPokemonMap() async {
 //      print(pokemon2.sprites);
 
       pokemonimgCount++;
-      pokemonMap[name] = {};
-      pokemonMap[name]["img"] = response.data["sprites"]["front_default"];
-      pokemonMap[name]["stats"] = [
-        response.data["stats"][0]["base_stat"],
-        response.data["stats"][1]["base_stat"],
-        response.data["stats"][2]["base_stat"]
-      ];
+      // pokemonMap[name] = {};
+      // pokemonMap[name]["img"] = response.data["sprites"]["front_default"];
+      // pokemonMap[name]["stats"] = [
+      //   response.data["stats"][0]["base_stat"],
+      //   response.data["stats"][1]["base_stat"],
+      //   response.data["stats"][2]["base_stat"]
+      // ];
     } else {
       print(response.statusCode);
     }
@@ -84,6 +84,7 @@ Future<void> pokemonInit() async {
   await fillURL();
   await fillPokemonMap();
   pokemonList.shuffle();
-  print(modelPokemonList.length);
+  modelPokemonList.shuffle();
+//  print(modelPokemonList.length);
   print("Done");
 }
