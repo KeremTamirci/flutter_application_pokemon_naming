@@ -26,6 +26,7 @@ class _TestPageState extends State<TestPage> {
       length1 = count;
     } else {
       count = pokemonimgCount;
+      length1 = pokemonimgCount;
     }
     nameToAdd = WordPair("Nameless", " ");
 
@@ -42,50 +43,52 @@ class _TestPageState extends State<TestPage> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(60))),
           onPressed: () {
-            showDialog<String>(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  scrollable: true,
-                  title: const Text('You caught a Pokemon!'),
-                  content: Wrap(alignment: WrapAlignment.center, children: [
-                    SizedBox(
-                      width: 200,
-                      height: 200,
-                      child: Image.network(
-                        pokemonMap[pokemonList[length1]["name"]]["img"],
+            if (count < pokemonimgCount) {
+              showDialog<String>(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    scrollable: true,
+                    title: const Text('You caught a Pokemon!'),
+                    content: Wrap(alignment: WrapAlignment.center, children: [
+                      SizedBox(
+                        width: 200,
+                        height: 200,
+                        child: Image.network(
+                          pokemonMap[pokemonList[length1]["name"]]["img"],
 //                        pokemonimgList[length1],
-                        fit: BoxFit.contain,
+                          fit: BoxFit.contain,
+                        ),
                       ),
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text("Name your Pokemon")),
-                    FavoriteListDialog(appState: appState)
-                  ]),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context, 'Cancel');
-                      },
-                      child: const Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        if (nameToAdd != WordPair("Nameless", " ")) {
-                          Navigator.pop(context, 'OK');
-                          appState.addPokemonName(nameToAdd, length1);
-                          setState(() {
-                            count++;
-                          });
-                        }
-                      },
-                      child: const Text('OK'),
-                    ),
-                  ],
-                );
-              },
-            );
+                      Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Text("Name your Pokemon")),
+                      FavoriteListDialog(appState: appState)
+                    ]),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context, 'Cancel');
+                        },
+                        child: const Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          if (nameToAdd != WordPair("Nameless", " ")) {
+                            Navigator.pop(context, 'OK');
+                            appState.addPokemonName(nameToAdd, length1);
+                            setState(() {
+                              count++;
+                            });
+                          }
+                        },
+                        child: const Text('OK'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            }
           },
           child: Text("Catch"),
         ),

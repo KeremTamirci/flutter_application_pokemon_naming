@@ -34,7 +34,7 @@ mixin _$Pokemon {
   int? get order =>
       throw _privateConstructorUsedError; /*     List<Null>? pastTypes, */
   Ability? get species =>
-      throw _privateConstructorUsedError; /*     Sprites? sprites, */
+      throw _privateConstructorUsedError; /* Sprites? sprites, */
   List<Stats>? get stats => throw _privateConstructorUsedError;
   List<Types>? get types => throw _privateConstructorUsedError;
   int? get weight => throw _privateConstructorUsedError;
@@ -382,9 +382,9 @@ class _$_Pokemon implements _Pokemon {
 /*     List<Null>? pastTypes, */
   @override
   final Ability? species;
-/*     Sprites? sprites, */
+/* Sprites? sprites, */
   final List<Stats>? _stats;
-/*     Sprites? sprites, */
+/* Sprites? sprites, */
   @override
   List<Stats>? get stats {
     final value = _stats;
@@ -518,7 +518,7 @@ abstract class _Pokemon implements Pokemon {
   int? get order;
   @override /*     List<Null>? pastTypes, */
   Ability? get species;
-  @override /*     Sprites? sprites, */
+  @override /* Sprites? sprites, */
   List<Stats>? get stats;
   @override
   List<Types>? get types;

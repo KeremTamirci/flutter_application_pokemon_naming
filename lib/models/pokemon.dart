@@ -26,7 +26,7 @@ class Pokemon with _$Pokemon {
 
     Ability? species,
 
-/*     Sprites? sprites, */
+/* Sprites? sprites, */
 
     List<Stats>? stats,
     List<Types>? types,
