@@ -17,10 +17,7 @@ class DetailsPage extends StatelessWidget {
     var appState = context.watch<MyAppState>();
 //    var mapLocation = pokemonMap[pokemonList[pokemonIndex]["name"]];
     var imageUsed = modelPokemonList[pokemonIndex].sprites.front_default;
-    final theme = Theme.of(context);
-    final style = theme.textTheme.displayMedium!.copyWith(
-      color: theme.colorScheme.onPrimary,
-    );
+
     return Scaffold(
       appBar: AppBar(
 //        title: Text(mapLocation["given_name"].asPascalCase),
@@ -44,43 +41,54 @@ class DetailsPage extends StatelessWidget {
                 child: RatingDetail(),
               ),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                          title: const Text('Change the name of your Pokemon!'),
-                          content:
-                              Wrap(alignment: WrapAlignment.center, children: [
-                            FavoriteListDialog(appState: appState),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context, 'Cancel');
-                              },
-                              child: const Text('Cancel'),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                if (nameToAdd != WordPair("Nameless", " ")) {
-                                  Navigator.pop(context, 'OK');
-                                  appState.addPokemonName(
-                                      nameToAdd, pokemonIndex);
-                                }
-                              },
-                              child: const Text('OK'),
-                            ),
-                          ]));
-                    },
-                  );
-                },
-                child: Text("Change Name")),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Go back!'),
+            SizedBox(
+              height: 30,
             ),
+            Wrap(children: [
+              ElevatedButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                            title:
+                                const Text('Change the name of your Pokemon!'),
+                            content: Wrap(
+                                alignment: WrapAlignment.center,
+                                children: [
+                                  FavoriteListDialog(appState: appState),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context, 'Cancel');
+                                    },
+                                    child: const Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      if (nameToAdd !=
+                                          WordPair("Nameless", " ")) {
+                                        Navigator.pop(context, 'OK');
+                                        appState.addPokemonName(
+                                            nameToAdd, pokemonIndex);
+                                      }
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ]));
+                      },
+                    );
+                  },
+                  child: Text("Change Name")),
+              SizedBox(
+                width: 20,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Go back!'),
+              ),
+            ]),
           ],
         ),
       ),

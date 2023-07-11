@@ -26,7 +26,7 @@ class RatingDetail extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
 //          rating: (mapLocation[0] / 20),
-          rating: (pokemonStats[0].base_stat / 20),
+          rating: (pokemonStats[0].base_stat),
         ),
         RatingWidget(
           statName: Text(
@@ -35,7 +35,7 @@ class RatingDetail extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
 //          rating: (mapLocation[1] / 20),
-          rating: (pokemonStats[1].base_stat / 20),
+          rating: (pokemonStats[1].base_stat),
         ),
         RatingWidget(
           statName: Text(
@@ -44,7 +44,7 @@ class RatingDetail extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
 //          rating: (mapLocation[2] / 20),
-          rating: (pokemonStats[2].base_stat / 20),
+          rating: (pokemonStats[2].base_stat),
         ),
       ],
     );
@@ -52,7 +52,7 @@ class RatingDetail extends StatelessWidget {
 }
 
 class RatingWidget extends StatelessWidget {
-  final double rating;
+  final int rating;
   final Text statName;
 
   RatingWidget({
@@ -68,16 +68,29 @@ class RatingWidget extends StatelessWidget {
       SizedBox(
         width: 300,
         child: Center(
-          child: RatingBarIndicator(
-            rating: rating,
-            itemBuilder: (context, index) => Icon(
-              Icons.star,
-              color: Colors.amber,
+          child: SizedBox(
+            width: 200,
+            child: Wrap(
+              children: [
+                LinearProgressIndicator(
+                  minHeight: 12,
+                  value: rating / 100,
+                ),
+                Text("$rating/100"),
+              ],
             ),
-            itemCount: 5,
-            itemSize: 30.0,
-            direction: Axis.horizontal,
           ),
+
+          // child: RatingBarIndicator(
+          //   rating: rating,
+          //   itemBuilder: (context, index) => Icon(
+          //     Icons.star,
+          //     color: Colors.amber,
+          //   ),
+          //   itemCount: 5,
+          //   itemSize: 30.0,
+          //   direction: Axis.horizontal,
+          // ),
         ),
       ),
     ]);
