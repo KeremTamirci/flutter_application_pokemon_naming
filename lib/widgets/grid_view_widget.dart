@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/data_scraper.dart';
-import '../pages/details_page.dart';
 import 'package:go_router/go_router.dart';
-import '../main.dart';
 
 var pokemonIndex = 0;
 
