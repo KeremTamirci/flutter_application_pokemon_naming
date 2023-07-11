@@ -42,7 +42,6 @@ class MyAppState extends ChangeNotifier {
     } else {
       pokemonNames[index] = pokemonName;
     }
-//    print(pokemonMap[pokemonList[index]["name"]]);
     notifyListeners();
   }
 }

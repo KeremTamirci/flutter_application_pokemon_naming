@@ -17,6 +17,10 @@ class DetailsPage extends StatelessWidget {
     var appState = context.watch<MyAppState>();
 //    var mapLocation = pokemonMap[pokemonList[pokemonIndex]["name"]];
     var imageUsed = modelPokemonList[pokemonIndex].sprites.front_default;
+    final theme = Theme.of(context);
+    final style = theme.textTheme.displayMedium!.copyWith(
+      color: theme.colorScheme.onPrimary,
+    );
     return Scaffold(
       appBar: AppBar(
 //        title: Text(mapLocation["given_name"].asPascalCase),
@@ -31,14 +35,14 @@ class DetailsPage extends StatelessWidget {
               width: 250,
               child: Image.network(
                 imageUsed,
-//                mapLocation["img"],
-//                pokemonimgList[pokemonIndex],
                 fit: BoxFit.fitWidth,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: RatingDetail(),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: RatingDetail(),
+              ),
             ),
             ElevatedButton(
                 onPressed: () {
