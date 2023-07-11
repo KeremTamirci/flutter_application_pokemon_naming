@@ -48,31 +48,16 @@ Future<void> getPokemon() async {
   }
 }
 
-Future<void> fillPokemonMap() async {
+Future<void> fillPokemonModel() async {
   var url;
-  var name;
   for (var i = 0; i < pokemonList.length; i++) {
     url = pokemonList[i]["url"];
     final response = await dio.get(url);
-    name = pokemonList[i]["name"];
     if (response.statusCode == 200) {
-      //response'u modele çevir
-
       Pokemon pokemon1 = Pokemon.fromJson(response.data);
-      print(pokemon1.stats?[0].base_stat);
+
       modelPokemonList.add(pokemon1);
-
-//      PokemonTest pokemon2 = PokemonTest.fromJson(response.data);
-//      print(pokemon2.sprites);
-
       pokemonimgCount++;
-      // pokemonMap[name] = {};
-      // pokemonMap[name]["img"] = response.data["sprites"]["front_default"];
-      // pokemonMap[name]["stats"] = [
-      //   response.data["stats"][0]["base_stat"],
-      //   response.data["stats"][1]["base_stat"],
-      //   response.data["stats"][2]["base_stat"]
-      // ];
     } else {
       print(response.statusCode);
     }
@@ -82,7 +67,7 @@ Future<void> fillPokemonMap() async {
 Future<void> pokemonInit() async {
   await getPokemon();
   await fillURL();
-  await fillPokemonMap();
+  await fillPokemonModel();
   pokemonList.shuffle();
   modelPokemonList.shuffle();
 //  print(modelPokemonList.length);
