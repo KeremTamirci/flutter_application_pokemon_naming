@@ -1,10 +1,14 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_application_1/models/pokemon.dart';
+//import 'package:flutter_application_1/models/pokemon_test.dart';
 
 var urlList = [];
 var jsonList = [];
 var pokemonList = [];
+var modelPokemonList = [];
+var pokemonNames = [];
 
-var pokemonMap = {};
+//var pokemonMap = {};
 final dio = Dio();
 
 int count = 0;
@@ -44,22 +48,16 @@ Future<void> getPokemon() async {
   }
 }
 
-Future<void> fillPokemonMap() async {
+Future<void> fillPokemonModel() async {
   var url;
-  var name;
   for (var i = 0; i < pokemonList.length; i++) {
     url = pokemonList[i]["url"];
     final response = await dio.get(url);
-    name = pokemonList[i]["name"];
     if (response.statusCode == 200) {
+      Pokemon pokemon1 = Pokemon.fromJson(response.data);
+
+      modelPokemonList.add(pokemon1);
       pokemonimgCount++;
-      pokemonMap[name] = {};
-      pokemonMap[name]["img"] = response.data["sprites"]["front_default"];
-      pokemonMap[name]["stats"] = [
-        response.data["stats"][0]["base_stat"],
-        response.data["stats"][1]["base_stat"],
-        response.data["stats"][2]["base_stat"]
-      ];
     } else {
       print(response.statusCode);
     }
@@ -69,7 +67,9 @@ Future<void> fillPokemonMap() async {
 Future<void> pokemonInit() async {
   await getPokemon();
   await fillURL();
-  await fillPokemonMap();
+  await fillPokemonModel();
   pokemonList.shuffle();
+  modelPokemonList.shuffle();
+//  print(modelPokemonList.length);
   print("Done");
 }

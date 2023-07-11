@@ -1,4 +1,4 @@
-import '../models/my_app_state.dart';
+import '../viewmodel/my_app_state.dart';
 import '../pages/pokemon_page.dart';
 
 import 'package:flutter/material.dart';

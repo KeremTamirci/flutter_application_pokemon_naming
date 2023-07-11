@@ -1,4 +1,4 @@
-import 'package:flutter_application_1/models/data_scraper.dart';
+import 'package:flutter_application_1/services/data_scraper.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -11,20 +11,40 @@ class RatingDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var mapLocation = pokemonMap[pokemonList[pokemonIndex]["name"]]["stats"];
+//    var mapLocation = pokemonMap[pokemonList[pokemonIndex]["name"]]["stats"];
+    var pokemonStats = modelPokemonList[pokemonIndex].stats;
+    final theme = Theme.of(context);
+    final style = theme.textTheme.headlineSmall!.copyWith(
+      color: theme.colorScheme.onBackground,
+    );
     return Column(
       children: [
         RatingWidget(
-          statName: Text("HP"),
-          rating: (mapLocation[0] / 20),
+          statName: Text(
+            "HP",
+            style: style,
+            textAlign: TextAlign.center,
+          ),
+//          rating: (mapLocation[0] / 20),
+          rating: (pokemonStats[0].base_stat / 20),
         ),
         RatingWidget(
-          statName: Text("Attack"),
-          rating: (mapLocation[1] / 20),
+          statName: Text(
+            "Attack",
+            style: style,
+            textAlign: TextAlign.center,
+          ),
+//          rating: (mapLocation[1] / 20),
+          rating: (pokemonStats[1].base_stat / 20),
         ),
         RatingWidget(
-          statName: Text("Defence"),
-          rating: (mapLocation[2] / 20),
+          statName: Text(
+            "Defence",
+            style: style,
+            textAlign: TextAlign.center,
+          ),
+//          rating: (mapLocation[2] / 20),
+          rating: (pokemonStats[2].base_stat / 20),
         ),
       ],
     );
@@ -44,7 +64,7 @@ class RatingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(alignment: WrapAlignment.center, children: [
-      SizedBox(width: 60, child: statName),
+      SizedBox(width: 100, child: statName),
       SizedBox(
         width: 300,
         child: Center(

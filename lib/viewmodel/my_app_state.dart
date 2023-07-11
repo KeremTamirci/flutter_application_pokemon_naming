@@ -1,7 +1,9 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import '../services/data_scraper.dart';
 
-import 'data_scraper.dart';
+// Burada pokemon type'ında parametre tanımlayıp response'u buraya çek. Sonra buradan eriş o bilgiye.
 
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
@@ -34,8 +36,12 @@ class MyAppState extends ChangeNotifier {
   }
 
   void addPokemonName(pokemonName, index) {
-    pokemonMap[pokemonList[index]["name"]]["given_name"] = pokemonName;
-    print(pokemonMap[pokemonList[index]["name"]]);
+//    pokemonMap[pokemonList[index]["name"]]["given_name"] = pokemonName;
+    if (index == length1) {
+      pokemonNames.add(pokemonName);
+    } else {
+      pokemonNames[index] = pokemonName;
+    }
     notifyListeners();
   }
 }

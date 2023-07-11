@@ -1,9 +1,9 @@
 import 'package:english_words/english_words.dart';
-import 'package:flutter_application_1/models/data_scraper.dart';
+import 'package:flutter_application_1/services/data_scraper.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
-import '../models/my_app_state.dart';
+import '../viewmodel/my_app_state.dart';
 import '../pages/pokemon_page.dart';
 import '../widgets/favorite_list_dialog.dart';
 import '../widgets/grid_view_widget.dart';
@@ -15,10 +15,18 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-    var mapLocation = pokemonMap[pokemonList[pokemonIndex]["name"]];
+//    var mapLocation = pokemonMap[pokemonList[pokemonIndex]["name"]];
+    var imageUsed = modelPokemonList[pokemonIndex].sprites.front_default;
+    final theme = Theme.of(context);
+    final style = theme.textTheme.displayMedium!.copyWith(
+      color: theme.colorScheme.onPrimary,
+    );
     return Scaffold(
       appBar: AppBar(
-        title: Text(mapLocation["given_name"].asPascalCase),
+//        title: Text(mapLocation["given_name"].asPascalCase),
+        title: Text(
+          pokemonNames[pokemonIndex].asPascalCase,
+        ),
       ),
       body: Center(
         child: Column(
@@ -26,14 +34,15 @@ class DetailsPage extends StatelessWidget {
             SizedBox(
               width: 250,
               child: Image.network(
-                mapLocation["img"],
-//                pokemonimgList[pokemonIndex],
+                imageUsed,
                 fit: BoxFit.fitWidth,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: RatingDetail(),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: RatingDetail(),
+              ),
             ),
             ElevatedButton(
                 onPressed: () {
