@@ -8,6 +8,7 @@ import '../pages/pokemon_page.dart';
 import '../widgets/favorite_list_dialog.dart';
 import '../widgets/grid_view_widget.dart';
 import '../widgets/rating_widget.dart';
+import 'package:go_router/go_router.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({super.key});
@@ -77,6 +78,7 @@ class DetailsPage extends StatelessWidget {
                                   TextButton(
                                     onPressed: () {
                                       Navigator.pop(context, 'Cancel');
+                                      //context.go("/");
                                     },
                                     child: const Text('Cancel'),
                                   ),
@@ -101,7 +103,8 @@ class DetailsPage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  // Navigator.pop(context);
+                  context.go("/");
                 },
                 child: const Text('Go back!'),
               ),
