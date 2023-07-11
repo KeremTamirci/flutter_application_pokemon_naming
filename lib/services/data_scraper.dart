@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_application_1/models/pokemon.dart';
-import 'package:flutter_application_1/models/pokemon_test.dart';
+//import 'package:flutter_application_1/models/pokemon_test.dart';
 
 var urlList = [];
 var jsonList = [];

@@ -11,7 +11,7 @@ class RatingDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var mapLocation = pokemonMap[pokemonList[pokemonIndex]["name"]]["stats"];
+//    var mapLocation = pokemonMap[pokemonList[pokemonIndex]["name"]]["stats"];
     var pokemonStats = modelPokemonList[pokemonIndex].stats;
     return Column(
       children: [
