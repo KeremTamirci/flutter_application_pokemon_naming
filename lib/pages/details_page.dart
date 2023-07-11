@@ -28,13 +28,30 @@ class DetailsPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            SizedBox(
-              width: 250,
+            Container(
+              width: 350,
+              height: 200,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                image: DecorationImage(
+                    image: AssetImage("assets/images/pokemon_background.jpeg"),
+                    fit: BoxFit.cover),
+              ),
               child: Image.network(
                 imageUsed,
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.fitHeight,
               ),
             ),
+            SizedBox(
+              height: 10,
+            ),
+            // SizedBox(
+            //   width: 250,
+            //   child: Image.network(
+            //     imageUsed,
+            //     fit: BoxFit.fitWidth,
+            //   ),
+            // ),
             Card(
               child: Padding(
                 padding: const EdgeInsets.all(12),
