@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_application_1/models/pokemon.dart';
 
 var urlList = [];
 var jsonList = [];
@@ -52,6 +53,11 @@ Future<void> fillPokemonMap() async {
     final response = await dio.get(url);
     name = pokemonList[i]["name"];
     if (response.statusCode == 200) {
+      //response'u modele çevir
+
+      Pokemon pokemon1 = Pokemon.fromJson(response.data);
+      print(pokemon1.toString());
+
       pokemonimgCount++;
       pokemonMap[name] = {};
       pokemonMap[name]["img"] = response.data["sprites"]["front_default"];

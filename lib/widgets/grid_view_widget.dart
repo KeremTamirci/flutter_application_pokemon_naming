@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/data_scraper.dart';
+import '../services/data_scraper.dart';
 import '../pages/details_page.dart';
 
 var pokemonIndex = 0;

@@ -1,9 +1,9 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/data_scraper.dart';
+import 'package:flutter_application_1/services/data_scraper.dart';
 import 'package:provider/provider.dart';
 
-import '../models/my_app_state.dart';
+import '../viewmodel/my_app_state.dart';
 import '../widgets/favorite_list_dialog.dart';
 import '../widgets/grid_view_widget.dart';
 

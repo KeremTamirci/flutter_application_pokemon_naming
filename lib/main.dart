@@ -1,7 +1,7 @@
-import 'models/data_scraper.dart';
+import 'services/data_scraper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'models/my_app_state.dart';
+import 'viewmodel/my_app_state.dart';
 import 'pages/my_home_page.dart';
 
 // ListView.builder indexi veriyor bu şekilde yapınca

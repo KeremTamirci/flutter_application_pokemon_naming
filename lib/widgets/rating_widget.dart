@@ -1,4 +1,4 @@
-import 'package:flutter_application_1/models/data_scraper.dart';
+import 'package:flutter_application_1/services/data_scraper.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';

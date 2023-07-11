@@ -1,7 +1,9 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import '../services/data_scraper.dart';
 
-import 'data_scraper.dart';
+// Burada pokemon type'ında parametre tanımlayıp response'u buraya çek. Sonra buradan eriş o bilgiye.
 
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
