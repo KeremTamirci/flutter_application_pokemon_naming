@@ -58,8 +58,9 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                     ),
                     Center(
                       child: Text(
-                        pokemonMap[pokemonList[index]["name"]]["given_name"]
-                            .asPascalCase,
+                        pokemonNames[index].asPascalCase,
+//                        pokemonMap[pokemonList[index]["name"]]["given_name"]
+//                            .asPascalCase,
 //                        pokemonNameList[index].asPascalCase,
                         style: widget.style,
                       ),

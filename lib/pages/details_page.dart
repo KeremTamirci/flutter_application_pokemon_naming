@@ -19,7 +19,10 @@ class DetailsPage extends StatelessWidget {
     var imageUsed = modelPokemonList[pokemonIndex].sprites.front_default;
     return Scaffold(
       appBar: AppBar(
-        title: Text(mapLocation["given_name"].asPascalCase),
+//        title: Text(mapLocation["given_name"].asPascalCase),
+        title: Text(
+          pokemonNames[pokemonIndex].asPascalCase,
+        ),
       ),
       body: Center(
         child: Column(
