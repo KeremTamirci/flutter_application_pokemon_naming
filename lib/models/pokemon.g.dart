@@ -29,6 +29,9 @@ _$_Pokemon _$$_PokemonFromJson(Map<String, dynamic> json) => _$_Pokemon(
       species: json['species'] == null
           ? null
           : Ability.fromJson(json['species'] as Map<String, dynamic>),
+      sprites: json['sprites'] == null
+          ? null
+          : Sprites.fromJson(json['sprites'] as Map<String, dynamic>),
       stats: (json['stats'] as List<dynamic>?)
           ?.map((e) => Stats.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -52,6 +55,7 @@ Map<String, dynamic> _$$_PokemonToJson(_$_Pokemon instance) =>
       'name': instance.name,
       'order': instance.order,
       'species': instance.species,
+      'sprites': instance.sprites,
       'stats': instance.stats,
       'types': instance.types,
       'weight': instance.weight,
@@ -160,6 +164,29 @@ Map<String, dynamic> _$$_VersionGroupDetailsToJson(
       'versionGroup': instance.versionGroup,
     };
 
+_$_Sprites _$$_SpritesFromJson(Map<String, dynamic> json) => _$_Sprites(
+      backDefault: json['backDefault'] as String?,
+      backShiny: json['backShiny'] as String?,
+      front_default: json['front_default'] as String?,
+      frontShiny: json['frontShiny'] as String?,
+      other: json['other'] == null
+          ? null
+          : Other.fromJson(json['other'] as Map<String, dynamic>),
+      versions: json['versions'] == null
+          ? null
+          : Versions.fromJson(json['versions'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_SpritesToJson(_$_Sprites instance) =>
+    <String, dynamic>{
+      'backDefault': instance.backDefault,
+      'backShiny': instance.backShiny,
+      'front_default': instance.front_default,
+      'frontShiny': instance.frontShiny,
+      'other': instance.other,
+      'versions': instance.versions,
+    };
+
 _$_Other _$$_OtherFromJson(Map<String, dynamic> json) => _$_Other(
       dreamWorld: json['dreamWorld'] == null
           ? null
@@ -177,23 +204,23 @@ Map<String, dynamic> _$$_OtherToJson(_$_Other instance) => <String, dynamic>{
 
 _$_DreamWorld _$$_DreamWorldFromJson(Map<String, dynamic> json) =>
     _$_DreamWorld(
-      frontDefault: json['frontDefault'] as String?,
+      front_default: json['front_default'] as String?,
     );
 
 Map<String, dynamic> _$$_DreamWorldToJson(_$_DreamWorld instance) =>
     <String, dynamic>{
-      'frontDefault': instance.frontDefault,
+      'front_default': instance.front_default,
     };
 
 _$_OfficialArtwork _$$_OfficialArtworkFromJson(Map<String, dynamic> json) =>
     _$_OfficialArtwork(
-      frontDefault: json['frontDefault'] as String?,
+      front_default: json['front_default'] as String?,
       frontShiny: json['frontShiny'] as String?,
     );
 
 Map<String, dynamic> _$$_OfficialArtworkToJson(_$_OfficialArtwork instance) =>
     <String, dynamic>{
-      'frontDefault': instance.frontDefault,
+      'front_default': instance.front_default,
       'frontShiny': instance.frontShiny,
     };
 
@@ -254,7 +281,7 @@ Map<String, dynamic> _$$_GenerationIToJson(_$_GenerationI instance) =>
     };
 
 _$_Stats _$$_StatsFromJson(Map<String, dynamic> json) => _$_Stats(
-      baseStat: json['baseStat'] as int?,
+      base_stat: json['base_stat'] as int?,
       effort: json['effort'] as int?,
       stat: json['stat'] == null
           ? null
@@ -262,7 +289,7 @@ _$_Stats _$$_StatsFromJson(Map<String, dynamic> json) => _$_Stats(
     );
 
 Map<String, dynamic> _$$_StatsToJson(_$_Stats instance) => <String, dynamic>{
-      'baseStat': instance.baseStat,
+      'base_stat': instance.base_stat,
       'effort': instance.effort,
       'stat': instance.stat,
     };

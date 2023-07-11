@@ -25,9 +25,7 @@ class Pokemon with _$Pokemon {
 /*     List<Null>? pastTypes, */
 
     Ability? species,
-
-/* Sprites? sprites, */
-
+    Sprites? sprites,
     List<Stats>? stats,
     List<Types>? types,
     int? weight,
@@ -115,42 +113,32 @@ class VersionGroupDetails with _$VersionGroupDetails {
       _$VersionGroupDetailsFromJson(json);
 }
 
-/* @freezed
-
+@freezed
 class Sprites with _$Sprites {
-
   factory Sprites({
-
     String? backDefault,
 
 /*     Null? backFemale, */
 
     String? backShiny,
 
-    Null? backShinyFemale,
+//    Null? backShinyFemale,
 
-    String? frontDefault,
+    String? front_default,
 
-    Null? frontFemale,
+//    Null? frontFemale,
 
     String? frontShiny,
 
-    Null? frontShinyFemale,
+//    Null? frontShinyFemale,
 
     Other? other,
-
     Versions? versions,
-
   }) = _Sprites;
 
-
-
-
   factory Sprites.fromJson(Map<String, dynamic> json) =>
-
       _$SpritesFromJson(json);
-
-} */
+}
 
 @freezed
 class Other with _$Other {
@@ -168,7 +156,7 @@ class Other with _$Other {
 @freezed
 class DreamWorld with _$DreamWorld {
   factory DreamWorld({
-    String? frontDefault,
+    String? front_default,
 
 /*     Null? frontFemale, */
   }) = _DreamWorld;
@@ -183,7 +171,7 @@ class Home with _$Home {
 
   factory Home({
 
-    String? frontDefault,
+    String? front_default,
 
 /*     Null? frontFemale, */
 
@@ -203,7 +191,7 @@ class Home with _$Home {
 @freezed
 class OfficialArtwork with _$OfficialArtwork {
   factory OfficialArtwork({
-    String? frontDefault,
+    String? front_default,
     String? frontShiny,
   }) = _OfficialArtwork;
 
@@ -244,7 +232,7 @@ class GenerationI with _$GenerationI {
 @freezed
 class Stats with _$Stats {
   factory Stats({
-    int? baseStat,
+    int? base_stat,
     int? effort,
     Ability? stat,
   }) = _Stats;

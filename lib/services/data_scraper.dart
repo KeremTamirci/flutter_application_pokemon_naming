@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_application_1/models/pokemon.dart';
+import 'package:flutter_application_1/models/pokemon_test.dart';
 
 var urlList = [];
 var jsonList = [];
@@ -57,8 +58,11 @@ Future<void> fillPokemonMap() async {
       //response'u modele çevir
 
       Pokemon pokemon1 = Pokemon.fromJson(response.data);
-      print(pokemon1.stats);
+      print(pokemon1.stats?[0].base_stat);
       modelPokemonList.add(pokemon1);
+
+//      PokemonTest pokemon2 = PokemonTest.fromJson(response.data);
+//      print(pokemon2.sprites);
 
       pokemonimgCount++;
       pokemonMap[name] = {};
