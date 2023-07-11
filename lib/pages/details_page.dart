@@ -10,15 +10,22 @@ import '../widgets/grid_view_widget.dart';
 import '../widgets/rating_widget.dart';
 import 'package:go_router/go_router.dart';
 
-class DetailsPage extends StatelessWidget {
+var animatedImage = modelPokemonList[pokemonIndex].sprites.front_default;
+
+class DetailsPage extends StatefulWidget {
   const DetailsPage({super.key});
 
+  @override
+  State<DetailsPage> createState() => _DetailsPageState();
+}
+
+class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 //    var mapLocation = pokemonMap[pokemonList[pokemonIndex]["name"]];
     var imageUsed = modelPokemonList[pokemonIndex].sprites.front_default;
-
+    animatedImage = modelPokemonList[pokemonIndex].sprites.front_default;
     return Scaffold(
       appBar: AppBar(
 //        title: Text(mapLocation["given_name"].asPascalCase),
@@ -38,10 +45,12 @@ class DetailsPage extends StatelessWidget {
                     image: AssetImage("assets/images/pokemon_background.jpeg"),
                     fit: BoxFit.cover),
               ),
-              child: Image.network(
-                imageUsed,
-                fit: BoxFit.fitHeight,
-              ),
+              child:
+                  // Image.network(
+                  //   imageUsed,
+                  //   fit: BoxFit.fitHeight,
+                  // ),
+                  AnimatedImage(),
             ),
             SizedBox(
               height: 10,
@@ -111,6 +120,42 @@ class DetailsPage extends StatelessWidget {
             ]),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class AnimatedImage extends StatefulWidget {
+  const AnimatedImage({super.key});
+
+  @override
+  State<AnimatedImage> createState() => _AnimatedImageState();
+}
+
+class _AnimatedImageState extends State<AnimatedImage>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: Duration(milliseconds: 1500),
+  )..repeat(reverse: true);
+  late Animation<Offset> _animation = Tween(
+    begin: Offset.zero,
+    end: Offset(0, 0.08),
+  ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+      position: _animation,
+      child: Image.network(
+        animatedImage,
+        fit: BoxFit.fitHeight,
       ),
     );
   }
