@@ -6,6 +6,7 @@ var urlList = [];
 var jsonList = [];
 var pokemonList = [];
 var modelPokemonList = [];
+var pokemonNames = [];
 
 var pokemonMap = {};
 final dio = Dio();
