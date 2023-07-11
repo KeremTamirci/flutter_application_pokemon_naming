@@ -1,7 +1,6 @@
 import 'package:flutter_application_1/services/data_scraper.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../widgets/grid_view_widget.dart';
 
 class RatingDetail extends StatelessWidget {
