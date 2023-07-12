@@ -6,7 +6,9 @@ var urlList = [];
 var jsonList = [];
 var pokemonList = [];
 var modelPokemonList = [];
+var unshuffledPokemonList = [];
 var pokemonNames = [];
+var originalPokemonNames = [];
 
 //var pokemonMap = {};
 final dio = Dio();
@@ -52,11 +54,13 @@ Future<void> fillPokemonModel() async {
   var url;
   for (var i = 0; i < pokemonList.length; i++) {
     url = pokemonList[i]["url"];
+    originalPokemonNames.add(pokemonList[i]["name"]);
     final response = await dio.get(url);
     if (response.statusCode == 200) {
       Pokemon pokemon1 = Pokemon.fromJson(response.data);
 
       modelPokemonList.add(pokemon1);
+      unshuffledPokemonList.add(pokemon1);
       pokemonimgCount++;
     } else {
       print(response.statusCode);
