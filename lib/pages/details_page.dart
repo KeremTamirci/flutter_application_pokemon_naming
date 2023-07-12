@@ -50,7 +50,17 @@ class _DetailsPageState extends State<DetailsPage> {
                   //   imageUsed,
                   //   fit: BoxFit.fitHeight,
                   // ),
+                  Stack(
+                fit: StackFit.passthrough,
+                children: [
+                  // Image.asset(
+                  //   "assets/images/light2.png",
+                  //   fit: BoxFit.fitWidth,
+                  // ),
+                  AnimatedOpacity(),
                   AnimatedImage(),
+                ],
+              ),
             ),
             SizedBox(
               height: 10,
@@ -156,6 +166,42 @@ class _AnimatedImageState extends State<AnimatedImage>
       child: Image.network(
         animatedImage,
         fit: BoxFit.fitHeight,
+      ),
+    );
+  }
+}
+
+class AnimatedOpacity extends StatefulWidget {
+  const AnimatedOpacity({super.key});
+
+  @override
+  State<AnimatedOpacity> createState() => _AnimatedOpacityState();
+}
+
+class _AnimatedOpacityState extends State<AnimatedOpacity>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: Duration(milliseconds: 875),
+  )..repeat(reverse: true);
+  late Animation<double> _animation = Tween(
+    begin: 0.25,
+    end: 1.0,
+  ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: _animation,
+      child: Image.asset(
+        "assets/images/light2.png",
+        fit: BoxFit.fitWidth,
       ),
     );
   }
