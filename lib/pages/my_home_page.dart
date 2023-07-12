@@ -114,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           ListTile(
-            title: const Text('Home'),
+            title: const Text('All Pokémon'),
             onTap: () {
               // Update the state of the app
               context.go("/otherhome");
@@ -123,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           ),
           ListTile(
-            title: const Text('Business'),
+            title: const Text('Placeholder'),
             onTap: () {
               // Update the state of the app
               // Then close the drawer
@@ -131,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           ),
           ListTile(
-            title: const Text('School'),
+            title: const Text('Placeholder'),
             onTap: () {
               // Update the state of the app
               // Then close the drawer
