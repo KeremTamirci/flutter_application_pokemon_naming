@@ -52,7 +52,7 @@ class _OtherHomePageState extends State<OtherHomePage> {
                       ),
                       Center(
                         child: Text(
-                          originalPokemonNames[index],
+                          pokemonList[index]["name"],
                           // pokemonNames[index].asPascalCase,
                           // pokemonMap[pokemonList[index]["name"]]["given_name"]
                           //.asPascalCase,

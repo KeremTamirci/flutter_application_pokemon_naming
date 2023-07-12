@@ -119,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
               // Update the state of the app
               context.go("/otherhome");
               // Then close the drawer
-              Navigator.pop(context);
+              context.pop();
             },
           ),
           ListTile(
@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onTap: () {
               // Update the state of the app
               // Then close the drawer
-              Navigator.pop(context);
+              context.pop();
             },
           ),
           ListTile(
@@ -135,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onTap: () {
               // Update the state of the app
               // Then close the drawer
-              Navigator.pop(context);
+              context.pop();
             },
           ),
         ],

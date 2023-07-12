@@ -24,6 +24,8 @@ class _GridViewWidgetState extends State<GridViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return GridView.count(
       crossAxisCount: 2,
       children: List.generate(length1, (index) {
@@ -39,6 +41,7 @@ class _GridViewWidgetState extends State<GridViewWidget> {
               context.go('/details');
             },
             child: Card(
+              color: theme.colorScheme.surfaceVariant,
               child: SizedBox(
                 height: 200,
                 child: Wrap(
