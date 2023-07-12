@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/data_scraper.dart';
-import '../pages/details_page.dart';
+import 'package:go_router/go_router.dart';
 
 var pokemonIndex = 0;
 
@@ -34,10 +34,11 @@ class _GridViewWidgetState extends State<GridViewWidget> {
               onTap: () {
                 print("Pokemon is tapped.");
                 tapped(index);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const DetailsPage()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => const DetailsPage()),
+                // );
+                context.go('/details');
               },
               child: SizedBox(
                 height: 200,
