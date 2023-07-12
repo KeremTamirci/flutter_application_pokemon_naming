@@ -10,6 +10,8 @@ import '../widgets/grid_view_widget.dart';
 import '../widgets/rating_widget.dart';
 import 'package:go_router/go_router.dart';
 
+// Base experience ve weight de eklenebilir buraya value olarak. Direkt erişim var bunlara.
+
 var animatedImage = modelPokemonList[pokemonIndex].sprites.front_default;
 
 class DetailsPage extends StatefulWidget {
