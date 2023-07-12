@@ -24,7 +24,7 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 //    var mapLocation = pokemonMap[pokemonList[pokemonIndex]["name"]];
-    var imageUsed = modelPokemonList[pokemonIndex].sprites.front_default;
+    // var imageUsed = modelPokemonList[pokemonIndex].sprites.front_default;
     animatedImage = modelPokemonList[pokemonIndex].sprites.front_default;
     return Scaffold(
       appBar: AppBar(

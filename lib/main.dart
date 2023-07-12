@@ -1,6 +1,7 @@
 import 'package:flutter_application_1/pages/details_page.dart';
 import 'package:flutter_application_1/pages/favorites_page.dart';
 import 'package:flutter_application_1/pages/history_page.dart';
+import 'package:flutter_application_1/pages/other_home_page.dart';
 import 'package:flutter_application_1/pages/pokemon_page.dart';
 
 import 'services/data_scraper.dart';
@@ -52,6 +53,12 @@ final GoRouter _router = GoRouter(
           path: 'details',
           builder: (BuildContext context, GoRouterState state) {
             return DetailsPage();
+          },
+        ),
+        GoRoute(
+          path: 'otherhome',
+          builder: (BuildContext context, GoRouterState state) {
+            return OtherHomePage();
           },
         ),
       ],
