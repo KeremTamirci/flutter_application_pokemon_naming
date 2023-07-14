@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter_application_1/services/data_scraper.dart';
+import 'package:flutter_application_1/widgets/animated_opacity.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import '../widgets/favorite_list_dialog.dart';
 import '../widgets/grid_view_widget.dart';
 import '../widgets/rating_widget.dart';
 import 'package:go_router/go_router.dart';
+import '../widgets/animated_image.dart';
 
 // Base experience ve weight de eklenebilir buraya value olarak. Direkt erişim var bunlara.
 
@@ -59,7 +61,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   //   "assets/images/light2.png",
                   //   fit: BoxFit.fitWidth,
                   // ),
-                  AnimatedOpacity(),
+                  AnimatedOpacityRepeat(),
                   AnimatedImage(),
                 ],
               ),
@@ -132,78 +134,6 @@ class _DetailsPageState extends State<DetailsPage> {
             ]),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class AnimatedImage extends StatefulWidget {
-  const AnimatedImage({super.key});
-
-  @override
-  State<AnimatedImage> createState() => _AnimatedImageState();
-}
-
-class _AnimatedImageState extends State<AnimatedImage>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    vsync: this,
-    duration: Duration(milliseconds: 1750),
-  )..repeat(reverse: true);
-  late Animation<Offset> _animation = Tween(
-    begin: Offset.zero,
-    end: Offset(0, 0.08),
-  ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SlideTransition(
-      position: _animation,
-      child: Image.network(
-        animatedImage,
-        fit: BoxFit.fitHeight,
-      ),
-    );
-  }
-}
-
-class AnimatedOpacity extends StatefulWidget {
-  const AnimatedOpacity({super.key});
-
-  @override
-  State<AnimatedOpacity> createState() => _AnimatedOpacityState();
-}
-
-class _AnimatedOpacityState extends State<AnimatedOpacity>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    vsync: this,
-    duration: Duration(milliseconds: 875),
-  )..repeat(reverse: true);
-  late Animation<double> _animation = Tween(
-    begin: 0.25,
-    end: 1.0,
-  ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeTransition(
-      opacity: _animation,
-      child: Image.asset(
-        "assets/images/light2.png",
-        fit: BoxFit.fitWidth,
       ),
     );
   }
