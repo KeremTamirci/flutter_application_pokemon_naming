@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../pages/details_page.dart';
 
 class AnimatedImage extends StatefulWidget {
-  AnimatedImage({super.key});
-
+  AnimatedImage({super.key, required this.imageToAnimate});
+  final imageToAnimate;
   @override
   State<AnimatedImage> createState() => _AnimatedImageState();
 }
@@ -31,7 +31,8 @@ class _AnimatedImageState extends State<AnimatedImage>
     return SlideTransition(
       position: _animation,
       child: Image.network(
-        animatedImage,
+//        animatedImage,
+        '${widget.imageToAnimate}',
         fit: BoxFit.fitHeight,
       ),
     );

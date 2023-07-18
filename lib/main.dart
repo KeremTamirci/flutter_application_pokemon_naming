@@ -56,6 +56,12 @@ final GoRouter _router = GoRouter(
           },
         ),
         GoRoute(
+          path: 'alldetails',
+          builder: (BuildContext context, GoRouterState state) {
+            return DetailsPage();
+          },
+        ),
+        GoRoute(
           path: 'otherhome',
           builder: (BuildContext context, GoRouterState state) {
             return OtherHomePage();

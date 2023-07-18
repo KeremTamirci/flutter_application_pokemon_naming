@@ -32,35 +32,33 @@ class _OtherHomePageState extends State<OtherHomePage> {
                 // );
                 //context.go('/details');
               },
-              child: Card(
-                child: SizedBox(
-                  height: 200,
-                  child: Wrap(
-                    children: [
-                      SizedBox(
-                        width: 200,
-                        height: 155,
-                        child: Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: Image.network(
-                            unshuffledPokemonList[index].sprites.front_default,
-                            // pokemonMap[pokemonList[index]["name"]]["img"],
-                            // pokemonimgList[index],
-                            fit: BoxFit.fitWidth,
+              child: InkWell(
+                child: Card(
+                  child: SizedBox(
+                    height: 200,
+                    child: Wrap(
+                      children: [
+                        SizedBox(
+                          width: 200,
+                          height: 155,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Image.network(
+                              unshuffledPokemonList[index]
+                                  .sprites
+                                  .front_default,
+                              fit: BoxFit.fitWidth,
+                            ),
                           ),
                         ),
-                      ),
-                      Center(
-                        child: Text(
-                          unshuffledPokemonList[index].name,
-                          // pokemonNames[index].asPascalCase,
-                          // pokemonMap[pokemonList[index]["name"]]["given_name"]
-                          //.asPascalCase,
-                          // pokemonNameList[index].asPascalCase,
-                          style: style,
+                        Center(
+                          child: Text(
+                            unshuffledPokemonList[index].name,
+                            style: style,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

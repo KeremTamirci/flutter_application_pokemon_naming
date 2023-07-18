@@ -62,7 +62,9 @@ class _DetailsPageState extends State<DetailsPage> {
                   //   fit: BoxFit.fitWidth,
                   // ),
                   AnimatedOpacityRepeat(),
-                  AnimatedImage(),
+                  AnimatedImage(
+                    imageToAnimate: animatedImage,
+                  ),
                 ],
               ),
             ),
