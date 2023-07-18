@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../pages/details_page.dart';
-
 class AnimatedImage extends StatefulWidget {
   AnimatedImage({super.key, required this.imageToAnimate});
-  final imageToAnimate;
+  final dynamic imageToAnimate;
   @override
   State<AnimatedImage> createState() => _AnimatedImageState();
 }

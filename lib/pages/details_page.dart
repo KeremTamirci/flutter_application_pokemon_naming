@@ -49,18 +49,9 @@ class _DetailsPageState extends State<DetailsPage> {
                     image: AssetImage("assets/images/pokemon_background.jpeg"),
                     fit: BoxFit.cover),
               ),
-              child:
-                  // Image.network(
-                  //   imageUsed,
-                  //   fit: BoxFit.fitHeight,
-                  // ),
-                  Stack(
+              child: Stack(
                 fit: StackFit.passthrough,
                 children: [
-                  // Image.asset(
-                  //   "assets/images/light2.png",
-                  //   fit: BoxFit.fitWidth,
-                  // ),
                   AnimatedOpacityRepeat(),
                   AnimatedImage(
                     imageToAnimate: animatedImage,
