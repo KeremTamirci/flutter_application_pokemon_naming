@@ -16,6 +16,11 @@ import 'package:go_router/go_router.dart';
 // uid pubdev'den bulunabilir.
 // freezed_annotation package
 // models, widgets, pages
+
+// Firebase kurarken web de kur.
+// Firebase entegrasyonu, login, şifremi unuttum, register vb.
+// Firebase üzerinden modellerden Pokemonları kaydetme. (Kullanıcıya özel / keşfet sayfası (community))
+// Collection içine user_id tanımla.
 Future<void> main() async {
   getHttp();
   await pokemonInit();

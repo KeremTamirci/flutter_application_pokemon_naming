@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/services/data_scraper.dart';
 import 'package:go_router/go_router.dart';
 
+var allPokemonIndex = 0;
+
 class OtherHomePage extends StatefulWidget {
   const OtherHomePage({super.key});
 
@@ -16,6 +18,11 @@ class _OtherHomePageState extends State<OtherHomePage> {
     final style = theme.textTheme.headlineSmall!.copyWith(
       color: theme.colorScheme.primary,
     );
+
+    void tapped(index) {
+      print("Image $index tapped.");
+      allPokemonIndex = index;
+    }
 
     return Scaffold(
       body: GridView.count(
@@ -33,6 +40,15 @@ class _OtherHomePageState extends State<OtherHomePage> {
                 //context.go('/details');
               },
               child: InkWell(
+                onTap: () {
+                  print("Pokemon is tapped.");
+                  tapped(index);
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => const DetailsPage()),
+                  // );
+                  context.go('/details');
+                },
                 child: Card(
                   child: SizedBox(
                     height: 200,
