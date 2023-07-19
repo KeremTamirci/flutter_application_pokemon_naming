@@ -36,7 +36,7 @@ class _TestPageState extends State<TestPage> {
         child: GridViewWidget(style: style),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Container(
+      floatingActionButton: SizedBox(
         height: 75,
         width: 100,
         child: FloatingActionButton(
