@@ -6,6 +6,7 @@ var urlList = [];
 var jsonList = [];
 var pokemonList = [];
 var modelPokemonList = [];
+var unshuffledPokemonList = [];
 var pokemonNames = [];
 
 //var pokemonMap = {};
@@ -57,6 +58,7 @@ Future<void> fillPokemonModel() async {
       Pokemon pokemon1 = Pokemon.fromJson(response.data);
 
       modelPokemonList.add(pokemon1);
+      unshuffledPokemonList.add(pokemon1);
       pokemonimgCount++;
     } else {
       print(response.statusCode);
@@ -68,7 +70,7 @@ Future<void> pokemonInit() async {
   await getPokemon();
   await fillURL();
   await fillPokemonModel();
-  pokemonList.shuffle();
+//  pokemonList.shuffle();
   modelPokemonList.shuffle();
 //  print(modelPokemonList.length);
   print("Done");

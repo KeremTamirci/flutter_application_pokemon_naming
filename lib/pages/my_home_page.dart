@@ -1,3 +1,5 @@
+import 'package:go_router/go_router.dart';
+
 import '../pages/history_page.dart';
 import '../pages/favorites_page.dart';
 import '../pages/pokemon_page.dart';
@@ -112,27 +114,28 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           ListTile(
-            title: const Text('Home'),
+            title: const Text('All Pokémon'),
             onTap: () {
               // Update the state of the app
+              context.go("/otherhome");
               // Then close the drawer
-              Navigator.pop(context);
+              context.pop();
             },
           ),
           ListTile(
-            title: const Text('Business'),
+            title: const Text('Placeholder'),
             onTap: () {
               // Update the state of the app
               // Then close the drawer
-              Navigator.pop(context);
+              context.pop();
             },
           ),
           ListTile(
-            title: const Text('School'),
+            title: const Text('Placeholder'),
             onTap: () {
               // Update the state of the app
               // Then close the drawer
-              Navigator.pop(context);
+              context.pop();
             },
           ),
         ],

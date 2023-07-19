@@ -24,22 +24,24 @@ class _GridViewWidgetState extends State<GridViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return GridView.count(
       crossAxisCount: 2,
       children: List.generate(length1, (index) {
         return Center(
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: InkWell(
-              onTap: () {
-                print("Pokemon is tapped.");
-                tapped(index);
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => const DetailsPage()),
-                // );
-                context.go('/details');
-              },
+          child: InkWell(
+            onTap: () {
+              print("Pokemon is tapped.");
+              tapped(index);
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => const DetailsPage()),
+              // );
+              context.go('/details');
+            },
+            child: Card(
+              color: theme.colorScheme.surfaceVariant,
               child: SizedBox(
                 height: 200,
                 child: Wrap(
@@ -51,8 +53,8 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                         padding: const EdgeInsets.all(15),
                         child: Image.network(
                           modelPokemonList[index].sprites.front_default,
-//                          pokemonMap[pokemonList[index]["name"]]["img"],
-//                          pokemonimgList[index],
+                          // pokemonMap[pokemonList[index]["name"]]["img"],
+                          // pokemonimgList[index],
                           fit: BoxFit.fitWidth,
                         ),
                       ),
@@ -60,9 +62,9 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                     Center(
                       child: Text(
                         pokemonNames[index].asPascalCase,
-//                        pokemonMap[pokemonList[index]["name"]]["given_name"]
-//                            .asPascalCase,
-//                        pokemonNameList[index].asPascalCase,
+                        // pokemonMap[pokemonList[index]["name"]]["given_name"]
+                        //.asPascalCase,
+                        // pokemonNameList[index].asPascalCase,
                         style: widget.style,
                       ),
                     ),
