@@ -16,11 +16,7 @@ import 'package:flutter/foundation.dart'
 /// );
 /// ```
 
-Future<void> main() async {
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-}
+Future<void> main() async {}
 
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
