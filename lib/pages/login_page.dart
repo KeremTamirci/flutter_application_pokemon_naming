@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_application_1/main.dart';
 import 'package:go_router/go_router.dart';
+
+import '../main.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,15 +17,17 @@ class _LoginPageState extends State<LoginPage> {
   late String mail = "";
   late String password = "";
 
-  void authenticate() async {
+  Future<void> authenticate() async {
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: mail,
         password: password,
       );
-      print("afteer credential");
+      isLoggedIn = true;
+      print("after credential");
     } on FirebaseAuthException catch (e) {
+      isLoggedIn = false;
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
@@ -99,11 +102,13 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               height: 50,
               child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     print(mail);
                     print(password);
 
-                    authenticate();
+                    await authenticate();
+//                    isLoggedIn = true;
+                    context.go("/");
 //                    isLoggedIn = true;
 //                    context.go("/");
                   },
