@@ -106,17 +106,29 @@ class _RegisterPageState extends State<RegisterPage> {
             SizedBox(
               height: 20,
             ),
-            SizedBox(
-              height: 50,
-              child: ElevatedButton(
-                  onPressed: () async {
-                    print(mail);
-                    print(password);
+            Wrap(
+              children: [
+                SizedBox(
+                  height: 50,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        context.go("/");
+                      },
+                      child: Text("Back")),
+                ),
+                SizedBox(
+                  height: 50,
+                  child: ElevatedButton(
+                      onPressed: () async {
+                        print(mail);
+                        print(password);
 
-                    await authenticate();
-                    context.go("/"); // Bunu başka nasıl yapabilirim bilmiyorum
-                  },
-                  child: Text("Sign Up")),
+                        await authenticate();
+                        context.go("/");
+                      },
+                      child: Text("Sign Up")),
+                ),
+              ],
             ),
           ],
         ),
