@@ -6,6 +6,7 @@ import 'package:flutter_application_1/pages/other_home_page.dart';
 import 'package:flutter_application_1/pages/pokemon_page.dart';
 
 import 'firebase_options.dart';
+import 'pages/login_page.dart';
 import 'pages/register_page.dart';
 import 'services/data_scraper.dart';
 import 'package:flutter/material.dart';
@@ -46,10 +47,16 @@ final GoRouter _router = GoRouter(
         if (isLoggedIn) {
           return MyHomePage();
         } else {
-          return RegisterPage();
+          return LoginPage();
         }
       },
       routes: <RouteBase>[
+        GoRoute(
+          path: 'register',
+          builder: (BuildContext context, GoRouterState state) {
+            return RegisterPage();
+          },
+        ),
         GoRoute(
           path: 'favorites',
           builder: (BuildContext context, GoRouterState state) {
