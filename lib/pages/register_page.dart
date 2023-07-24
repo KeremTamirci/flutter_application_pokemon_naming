@@ -117,6 +117,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: Text("Back")),
                 ),
                 SizedBox(
+                  width: 20,
+                ),
+                SizedBox(
                   height: 50,
                   child: ElevatedButton(
                       onPressed: () async {

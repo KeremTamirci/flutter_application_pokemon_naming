@@ -117,6 +117,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
+            GestureDetector(
+              child: Text("Forgot Password?"),
+              onTap: () {
+                context.go("/forgotpassword");
+              },
+            ),
           ],
         ),
       ),

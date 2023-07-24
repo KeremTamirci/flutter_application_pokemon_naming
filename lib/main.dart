@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_1/pages/details_page.dart';
 import 'package:flutter_application_1/pages/favorites_page.dart';
+import 'package:flutter_application_1/pages/forgot_password.dart';
 import 'package:flutter_application_1/pages/history_page.dart';
 import 'package:flutter_application_1/pages/other_home_page.dart';
 import 'package:flutter_application_1/pages/pokemon_page.dart';
@@ -56,6 +57,12 @@ final GoRouter _router = GoRouter(
           path: 'register',
           builder: (BuildContext context, GoRouterState state) {
             return RegisterPage();
+          },
+        ),
+        GoRoute(
+          path: 'forgotpassword',
+          builder: (BuildContext context, GoRouterState state) {
+            return ForgotPassword();
           },
         ),
         GoRoute(
