@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 
 import '../main.dart';
+import 'login_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -18,6 +19,10 @@ class _RegisterPageState extends State<RegisterPage> {
   late String password = "";
 
   Future<void> authenticate() async {
+    final theme = Theme.of(context);
+    final style = theme.textTheme.titleMedium!.copyWith(
+      color: theme.colorScheme.onBackground,
+    );
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -36,13 +41,24 @@ class _RegisterPageState extends State<RegisterPage> {
       isLoggedIn = false;
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
+        if (context.mounted) Navigator.pop(context);
+        String errorText = 'The password provided is too weak.';
+        showDialog(
+            context: context,
+            builder: (context) =>
+                ErrorMessageDialog(errorText: errorText, style: style));
       } else if (e.code == 'email-already-in-use') {
+        if (context.mounted) Navigator.pop(context);
         print('The account already exists for that email.');
+        String errorText = 'The account already exists for that email.';
+        showDialog(
+            context: context,
+            builder: (context) =>
+                ErrorMessageDialog(errorText: errorText, style: style));
       }
     } catch (e) {
       print(e);
     }
-    if (context.mounted) Navigator.pop(context);
   }
 
   @override
