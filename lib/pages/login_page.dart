@@ -57,6 +57,14 @@ class _LoginPageState extends State<LoginPage> {
             context: context,
             builder: (context) =>
                 ErrorMessageDialog(errorText: errorText, style: style));
+      } else {
+        print('No user found for that email');
+        String errorText = 'No user found for that email';
+        if (context.mounted) Navigator.pop(context);
+        showDialog(
+            context: context,
+            builder: (context) =>
+                ErrorMessageDialog(errorText: errorText, style: style));
       }
     }
   }
@@ -95,15 +103,20 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(
               width: 250,
-              child: TextField(
+              child: TextFormField(
                 controller: _controllerLoginMail,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'E-Mail',
                 ),
-                onSubmitted: (String mailValue) {
+                onFieldSubmitted: (String mailValue) {
                   loginMail = mailValue;
                 },
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (email) => !EmailValidator.validate(
+                        _controllerLoginMail.text.trim(), true)
+                    ? "Enter a valid email"
+                    : null,
               ),
             ),
             SizedBox(
@@ -111,19 +124,24 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(
               width: 250,
-              child: TextField(
+              child: TextFormField(
                 controller: _controllerLoginPassword,
                 obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Password',
                 ),
-                onSubmitted: (String passwordValue) {
+                onFieldSubmitted: (String passwordValue) {
                   // print(passwordValue);
                   setState(() {
                     loginPassword = passwordValue;
                   });
                 },
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) =>
+                    _controllerLoginPassword.text.trim().length < 6
+                        ? "Enter at least 6 characters"
+                        : null,
               ),
             ),
             SizedBox(

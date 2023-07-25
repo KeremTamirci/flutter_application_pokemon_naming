@@ -65,6 +65,14 @@ class _RegisterPageState extends State<RegisterPage> {
             context: context,
             builder: (context) =>
                 ErrorMessageDialog(errorText: errorText, style: style));
+      } else {
+        print('Unable to create account');
+        String errorText = 'Unable to create account';
+        if (context.mounted) Navigator.pop(context);
+        showDialog(
+            context: context,
+            builder: (context) =>
+                ErrorMessageDialog(errorText: errorText, style: style));
       }
     } catch (e) {
       print(e);
@@ -117,9 +125,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     mail = mailValue;
                   },
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  // validator: (email) => EmailValidator.validate(mail, true)
-                  //     ? "Enter a valid email"
-                  //     : null,
+                  validator: (email) => !EmailValidator.validate(
+                          _controllerMail.text.trim(), true)
+                      ? "Enter a valid email"
+                      : null,
                 ),
               ),
               SizedBox(
@@ -127,19 +136,24 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               SizedBox(
                 width: 250,
-                child: TextField(
+                child: TextFormField(
                   controller: _controllerPassword,
                   obscureText: true,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password',
                   ),
-                  onSubmitted: (String passwordValue) {
+                  onFieldSubmitted: (String passwordValue) {
                     // print(passwordValue);
                     setState(() {
                       password = passwordValue;
                     });
                   },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) =>
+                      _controllerPassword.text.trim().length < 6
+                          ? "Enter at least 6 characters"
+                          : null,
                 ),
               ),
               SizedBox(
