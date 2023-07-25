@@ -81,6 +81,15 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              "Login Screen",
+              style: theme.textTheme.displayMedium!.copyWith(
+                color: theme.colorScheme.onBackground,
+              ),
+            ),
+            SizedBox(
+              height: 80,
+            ),
             SizedBox(
               width: 250,
               child: TextField(
@@ -141,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                         if (context.mounted) context.go("/");
                         // Bunu başka nasıl yapabilirim bilmiyorum
                       },
-                      child: Text("Login")),
+                      child: Text("Log in")),
                 ),
               ],
             ),
