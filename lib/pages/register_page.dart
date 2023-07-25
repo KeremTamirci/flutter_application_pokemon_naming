@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +14,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final formKey = GlobalKey<FormState>();
   late TextEditingController _controllerMail;
   late TextEditingController _controllerPassword;
   late String mail = "";
@@ -23,6 +25,14 @@ class _RegisterPageState extends State<RegisterPage> {
     final style = theme.textTheme.titleMedium!.copyWith(
       color: theme.colorScheme.onBackground,
     );
+
+    // final isValid = formKey.currentState!.validate();
+    final isValid = EmailValidator.validate(_controllerMail.text.trim());
+    if (!isValid) {
+      print("Credentials are not valid");
+      return;
+    }
+
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -32,8 +42,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: mail,
-        password: password,
+        email: _controllerMail.text.trim(),
+        password: _controllerPassword.text.trim(),
       );
       isLoggedIn = true;
       print("after credential");
@@ -82,81 +92,88 @@ class _RegisterPageState extends State<RegisterPage> {
       color: theme.colorScheme.onBackground,
     );
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Register Screen",
-              style: style,
-            ),
-            SizedBox(
-              height: 80,
-            ),
-            SizedBox(
-              width: 250,
-              child: TextField(
-                controller: _controllerMail,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'E-Mail',
-                ),
-                onSubmitted: (String mailValue) {
-                  mail = mailValue;
-                },
+      body: Form(
+        key: formKey,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Register Screen",
+                style: style,
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-              width: 250,
-              child: TextField(
-                controller: _controllerPassword,
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
-                ),
-                onSubmitted: (String passwordValue) {
-                  // print(passwordValue);
-                  setState(() {
-                    password = passwordValue;
-                  });
-                },
+              SizedBox(
+                height: 80,
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Wrap(
-              children: [
-                SizedBox(
-                  height: 50,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        context.go("/");
-                      },
-                      child: Text("Back")),
+              SizedBox(
+                width: 250,
+                child: TextFormField(
+                  controller: _controllerMail,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'E-Mail',
+                  ),
+                  onFieldSubmitted: (String mailValue) {
+                    mail = mailValue;
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  // validator: (email) => EmailValidator.validate(mail, true)
+                  //     ? "Enter a valid email"
+                  //     : null,
                 ),
-                SizedBox(
-                  width: 20,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                width: 250,
+                child: TextField(
+                  controller: _controllerPassword,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Password',
+                  ),
+                  onSubmitted: (String passwordValue) {
+                    // print(passwordValue);
+                    setState(() {
+                      password = passwordValue;
+                    });
+                  },
                 ),
-                SizedBox(
-                  height: 50,
-                  child: ElevatedButton(
-                      onPressed: () async {
-                        print(mail);
-                        print(password);
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Wrap(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          context.go("/");
+                        },
+                        child: Text("Back")),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: ElevatedButton(
+                        onPressed: () async {
+                          print(mail);
+                          print(password);
 
-                        await authenticate();
-                        if (context.mounted) context.go("/");
-                      },
-                      child: Text("Sign Up")),
-                ),
-              ],
-            ),
-          ],
+                          await authenticate();
+                          if (context.mounted && isLoggedIn) context.go("/");
+                        },
+                        child: Text("Sign Up")),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

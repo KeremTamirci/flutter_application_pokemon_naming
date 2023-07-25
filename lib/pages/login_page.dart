@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:email_validator/email_validator.dart';
 
 import '../main.dart';
 
@@ -22,6 +23,9 @@ class _LoginPageState extends State<LoginPage> {
     final style = theme.textTheme.titleMedium!.copyWith(
       color: theme.colorScheme.onBackground,
     );
+
+    if (!EmailValidator.validate(_controllerLoginMail.text.trim())) return;
+
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -31,7 +35,8 @@ class _LoginPageState extends State<LoginPage> {
 
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: loginMail, password: loginPassword);
+          email: _controllerLoginMail.text.trim(),
+          password: _controllerLoginPassword.text.trim());
       isLoggedIn = true;
       if (context.mounted) Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
@@ -91,6 +96,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               width: 250,
               child: TextField(
+                controller: _controllerLoginMail,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'E-Mail',
@@ -106,6 +112,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               width: 250,
               child: TextField(
+                controller: _controllerLoginPassword,
                 obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
