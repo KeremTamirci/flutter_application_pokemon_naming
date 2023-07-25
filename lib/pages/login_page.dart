@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
             ));
 
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: loginMail, password: loginPassword);
       isLoggedIn = true;
       if (context.mounted) Navigator.pop(context);
@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final style = theme.textTheme.titleMedium!.copyWith(
+    final style = theme.textTheme.displayMedium!.copyWith(
       color: theme.colorScheme.onBackground,
     );
     return Scaffold(
@@ -83,9 +83,7 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             Text(
               "Login Screen",
-              style: theme.textTheme.displayMedium!.copyWith(
-                color: theme.colorScheme.onBackground,
-              ),
+              style: style,
             ),
             SizedBox(
               height: 80,

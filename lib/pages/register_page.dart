@@ -26,8 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ));
 
     try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: mail,
         password: password,
       );
