@@ -34,7 +34,7 @@ Future<void> main() async {
   await pokemonInit();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+    options: DefaultFirebaseOptions.ios,
   );
   // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   runApp(MyApp());

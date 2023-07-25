@@ -18,16 +18,40 @@ class _LoginPageState extends State<LoginPage> {
   String loginMail = "";
 
   Future<void> authenticate() async {
+    final theme = Theme.of(context);
+    final style = theme.textTheme.titleMedium!.copyWith(
+      color: theme.colorScheme.onBackground,
+    );
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(
+              child: CircularProgressIndicator(),
+            ));
+
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: loginMail, password: loginPassword);
       isLoggedIn = true;
+      if (context.mounted) Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       isLoggedIn = false;
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
+        String errorText = 'No user found for that email.';
+        if (context.mounted) Navigator.pop(context);
+        showDialog(
+            context: context,
+            builder: (context) =>
+                ErrorMessageDialog(errorText: errorText, style: style));
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
+        String errorText = 'Wrong password provided for that user.';
+        if (context.mounted) Navigator.pop(context);
+        showDialog(
+            context: context,
+            builder: (context) =>
+                ErrorMessageDialog(errorText: errorText, style: style));
       }
     }
   }
@@ -48,6 +72,10 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final style = theme.textTheme.titleMedium!.copyWith(
+      color: theme.colorScheme.onBackground,
+    );
     return Scaffold(
       body: Center(
         child: Column(
@@ -110,21 +138,59 @@ class _LoginPageState extends State<LoginPage> {
                         print(loginPassword);
 
                         await authenticate();
-                        context.go("/");
+                        if (context.mounted) context.go("/");
                         // Bunu başka nasıl yapabilirim bilmiyorum
                       },
                       child: Text("Login")),
                 ),
               ],
             ),
+            SizedBox(
+              height: 20,
+            ),
             GestureDetector(
-              child: Text("Forgot Password?"),
+              child: Text(
+                "Forgot Password?",
+                style: TextStyle(
+                    decoration: TextDecoration.underline,
+                    color: theme.primaryColor),
+              ),
               onTap: () {
                 context.go("/forgotpassword");
               },
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ErrorMessageDialog extends StatelessWidget {
+  const ErrorMessageDialog({
+    super.key,
+    required this.errorText,
+    required this.style,
+  });
+
+  final String errorText;
+  final TextStyle style;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: SizedBox(
+        width: 300,
+        height: 100,
+        child: ColoredBox(
+            color: Colors.white,
+            child: Center(
+              child: Text(
+                errorText,
+                style: style,
+                textAlign: TextAlign.center,
+              ),
+            )),
       ),
     );
   }

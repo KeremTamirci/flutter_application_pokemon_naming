@@ -78,7 +78,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   height: 50,
                   child: ElevatedButton(
                       onPressed: () async {
-                        resetPassword();
+                        await resetPassword();
 //                        await authenticate();
                         // context.go("/register");
                         // Bunu başka nasıl yapabilirim bilmiyorum

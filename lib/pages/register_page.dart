@@ -18,6 +18,13 @@ class _RegisterPageState extends State<RegisterPage> {
   late String password = "";
 
   Future<void> authenticate() async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(
+              child: CircularProgressIndicator(),
+            ));
+
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -36,6 +43,7 @@ class _RegisterPageState extends State<RegisterPage> {
     } catch (e) {
       print(e);
     }
+    if (context.mounted) Navigator.pop(context);
   }
 
   @override
@@ -127,7 +135,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         print(password);
 
                         await authenticate();
-                        context.go("/");
+                        if (context.mounted) context.go("/");
                       },
                       child: Text("Sign Up")),
                 ),
