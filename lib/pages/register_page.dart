@@ -7,6 +7,13 @@ import 'package:go_router/go_router.dart';
 import '../main.dart';
 import 'login_page.dart';
 
+// For Firestore
+final db = FirebaseFirestore.instance;
+final FirebaseAuth auth = FirebaseAuth.instance;
+final User? currentUser = auth.currentUser;
+final uid = currentUser!.uid;
+String? emailid = currentUser!.email;
+
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -21,15 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
   late String mail = "";
   late String password = "";
 
-// For Firestore
-  final db = FirebaseFirestore.instance;
-  final FirebaseAuth auth = FirebaseAuth.instance;
-
   void addToDatabase() {
-    final User? currentUser = auth.currentUser;
-    final uid = currentUser!.uid;
-    String? emailid = currentUser.email;
-
     final user = <String, dynamic>{
       "mail": emailid,
       "uid": uid,

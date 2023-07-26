@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/register_page.dart';
 import 'package:flutter_application_1/services/data_scraper.dart';
 import 'package:provider/provider.dart';
 
@@ -78,6 +79,17 @@ class _TestPageState extends State<TestPage> {
                           if (nameToAdd != WordPair("Nameless", " ")) {
                             Navigator.pop(context, 'OK');
                             appState.addPokemonName(nameToAdd, length1);
+                            print("uid seen from pokemon page: $uid");
+                            db
+                                .collection("/Users/$uid/Pokemon")
+                                .doc(nameToAdd.asPascalCase)
+                                .set({
+                              "name": nameToAdd.asPascalCase,
+                              "img": modelPokemonList[length1]
+                                  .sprites
+                                  .front_default,
+                            }).onError((e, _) =>
+                                    print("Error writing document: $e"));
                             setState(() {
                               count++;
                             });
