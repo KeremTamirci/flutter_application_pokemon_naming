@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,6 +20,27 @@ class _RegisterPageState extends State<RegisterPage> {
   late TextEditingController _controllerPassword;
   late String mail = "";
   late String password = "";
+
+// For Firestore
+  final db = FirebaseFirestore.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  void addToDatabase() {
+    final User? currentUser = auth.currentUser;
+    final uid = currentUser!.uid;
+    String? emailid = currentUser.email;
+
+    final user = <String, dynamic>{
+      "mail": emailid,
+      "uid": uid,
+    };
+
+    print("user: ${currentUser.toString()}");
+    print("uid: $uid");
+    print("mail: $emailid");
+    // db.collection("Users").add(user);
+    db.collection("Users").doc(uid).set({"mail": emailid, "uid": uid});
+  }
 
   Future<void> authenticate() async {
     final theme = Theme.of(context);
@@ -46,6 +68,8 @@ class _RegisterPageState extends State<RegisterPage> {
         password: _controllerPassword.text.trim(),
       );
       isLoggedIn = true;
+      addToDatabase();
+
       print("after credential");
     } on FirebaseAuthException catch (e) {
       isLoggedIn = false;
