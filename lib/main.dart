@@ -30,12 +30,12 @@ import 'package:go_router/go_router.dart';
 bool isLoggedIn = false;
 
 Future<void> main() async {
-  getHttp();
-  await pokemonInit();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  getHttp();
+  await pokemonInit();
   // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   runApp(MyApp());
 }
