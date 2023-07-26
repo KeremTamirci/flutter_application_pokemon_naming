@@ -14,17 +14,18 @@ class GeneratorPage extends StatelessWidget {
   void databaseTest() {
     final User? currentUser = auth.currentUser;
     final uid = currentUser!.uid;
-    String? email_id = currentUser.email;
+    String? emailid = currentUser.email;
 
     final user = <String, dynamic>{
-      "mail": email_id,
+      "mail": emailid,
       "uid": uid,
     };
 
     print("user: ${currentUser.toString()}");
     print("uid: $uid");
-    print("mail: $email_id");
-    db.collection("Users").add(user);
+    print("mail: $emailid");
+    // db.collection("Users").add(user);
+    db.collection("Users").doc(uid).set({"mail": emailid, "uid": uid});
   }
 
   @override
