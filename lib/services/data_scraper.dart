@@ -72,6 +72,7 @@ Future<void> pokemonInit() async {
   await fillPokemonModel();
 //  pokemonList.shuffle();
   modelPokemonList.shuffle();
-//  print(modelPokemonList.length);
+//  print(modelPokemonList.length)s;
+
   print("Done");
 }

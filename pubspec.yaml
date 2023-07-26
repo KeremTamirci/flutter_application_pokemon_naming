@@ -22,7 +22,7 @@ dependencies:
   go_router: ^9.0.3
   firebase_core: ^2.15.0
   firebase_auth: ^4.7.1
-  cloud_firestore: ^4.8.3
+  cloud_firestore: ^4.8.4
   firebase_ui_auth: ^1.6.1
   email_validator: ^2.0.1
 
