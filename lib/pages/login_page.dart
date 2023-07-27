@@ -4,9 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:email_validator/email_validator.dart';
 
 import '../main.dart';
-import '../models/pokemon.dart';
 import '../services/data_scraper.dart';
-import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
