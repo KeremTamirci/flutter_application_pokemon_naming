@@ -41,19 +41,7 @@ class _LoginPageState extends State<LoginPage> {
           email: _controllerLoginMail.text.trim(),
           password: _controllerLoginPassword.text.trim());
       isLoggedIn = true;
-      await db.collection("/Users/$uid/Pokemon").get().then((event) {
-        for (var doc in event.docs) {
-          // print(event.docs.length);
-          count += 1;
-          existingPokemonList.add(doc.data());
-          Pokemon pokemon2 = Pokemon.fromJson(doc.data());
-          print(pokemon2);
-          modelUsersPokemon.add(pokemon2);
-          pokemonNames.add(doc.data()["name"]);
-          print("${doc.id} => ${doc.data()}");
-        }
-        print("Model User's Pokemon list length: ${modelUsersPokemon.length}");
-      });
+      await userInit();
       if (context.mounted) Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       isLoggedIn = false;

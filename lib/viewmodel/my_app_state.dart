@@ -1,6 +1,8 @@
+import 'package:cloud_firestore_platform_interface/src/set_options.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import '../pages/register_page.dart';
 import '../services/data_scraper.dart';
 
 // Burada pokemon type'ında parametre tanımlayıp response'u buraya çek. Sonra buradan eriş o bilgiye.
@@ -8,30 +10,46 @@ import '../services/data_scraper.dart';
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
   var history = <WordPair>[];
+  var historyDatabase = <String>[];
 
   void getNext() {
     history.add(current);
+    historyDatabase.add(current.asPascalCase);
+    // db.collection("/Users").doc(uid).update({"history": history});
+    var userRef = db.collection('/Users').doc(uid);
+    userRef.set({"history": historyDatabase}, SetOptions(merge: true));
+
     current = WordPair.random();
     notifyListeners();
   }
 
   var favorites = <WordPair>[];
+  var favoritesDatabase = <String>[];
 
   void toggleFavorite() {
     if (favorites.contains(current)) {
       favorites.remove(current);
+      favoritesDatabase.remove(current.asPascalCase);
     } else {
       favorites.add(current);
+      favoritesDatabase.add(current.asPascalCase);
     }
+    var userRef = db.collection('/Users').doc(uid);
+    userRef.set({"favorites": favoritesDatabase}, SetOptions(merge: true));
+
     notifyListeners();
   }
 
   void toggleFavoriteList(pair) {
     if (favorites.contains(pair)) {
       favorites.remove(pair);
+      favoritesDatabase.remove(pair.asPascalCase);
     } else {
       favorites.add(pair);
+      favoritesDatabase.add(pair.asPascalCase);
     }
+    var userRef = db.collection('/Users').doc(uid);
+    userRef.set({"favorites": favoritesDatabase}, SetOptions(merge: true));
     notifyListeners();
   }
 

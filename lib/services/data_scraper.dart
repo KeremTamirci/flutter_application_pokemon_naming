@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_application_1/models/pokemon.dart';
 
+import '../pages/register_page.dart';
+
 //import 'package:flutter_application_1/models/pokemon_test.dart';
 
 var urlList = [];
@@ -79,4 +81,23 @@ Future<void> pokemonInit() async {
 //  print(modelPokemonList.length)s;
 
   print("Done");
+}
+
+Future<void> userInit() async {
+  await db.collection("/Users/$uid/Pokemon").get().then((event) {
+    for (var doc in event.docs) {
+      // print(event.docs.length);
+      count += 1;
+      existingPokemonList.add(doc.data());
+      Pokemon pokemon2 = Pokemon.fromJson(doc.data());
+      // print(pokemon2);
+      modelUsersPokemon.add(pokemon2);
+      pokemonNames.add(doc.data()["name"]);
+      // print("${doc.id} => ${doc.data()}");
+    }
+    print("Model User's Pokemon list length: ${modelUsersPokemon.length}");
+  });
+  await db.collection("/Users").doc(uid).get().then((event) {
+    print("Doc data: ${event.data()}");
+  });
 }
