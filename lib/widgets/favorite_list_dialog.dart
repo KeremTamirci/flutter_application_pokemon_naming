@@ -23,12 +23,13 @@ class FavoriteListDialog extends StatelessWidget {
         child: ListView(
           controller: controllerOne,
           children: [
-            for (var pair in appState.favorites)
+            for (var pair in favoritesDatabase)
               TextButton(
                   onPressed: () {
-                    nameToAdd = pair;
+                    // nameToAdd = pair;
+                    nameToAddString = pair;
                   },
-                  child: Text(pair.asPascalCase)),
+                  child: Text(pair)),
           ],
         ),
       ),

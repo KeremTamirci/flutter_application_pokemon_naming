@@ -10,6 +10,7 @@ import '../widgets/favorite_list_dialog.dart';
 import '../widgets/grid_view_widget.dart';
 
 var nameToAdd = WordPair("Nameless", " ");
+var nameToAddString = "";
 
 class TestPage extends StatefulWidget {
   @override
@@ -31,6 +32,7 @@ class _TestPageState extends State<TestPage> {
       length1 = pokemonimgCount;
     }
     nameToAdd = WordPair("Nameless", " ");
+    nameToAddString = "";
 
     return Scaffold(
       body: ColoredBox(
@@ -77,10 +79,11 @@ class _TestPageState extends State<TestPage> {
                       ),
                       TextButton(
                         onPressed: () async {
-                          if (nameToAdd != WordPair("Nameless", " ")) {
+                          // if (nameToAdd != WordPair("Nameless", " ")) {
+                          if (nameToAddString != "") {
                             var pokemonStats = modelPokemonList[length1].stats;
                             final user = <String, dynamic>{
-                              "name": nameToAdd.asPascalCase,
+                              "name": nameToAddString,
                               "sprites": {
                                 "front_default": modelPokemonList[length1]
                                     .sprites
@@ -93,7 +96,7 @@ class _TestPageState extends State<TestPage> {
                               ],
                             };
                             Navigator.pop(context, 'OK');
-                            appState.addPokemonName(nameToAdd, length1);
+                            appState.addPokemonName(nameToAddString, length1);
                             print("uid seen from pokemon page: $uid");
                             // db
                             //     .collection("/Users/$uid/Pokemon")

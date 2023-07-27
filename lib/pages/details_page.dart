@@ -101,11 +101,12 @@ class _DetailsPageState extends State<DetailsPage> {
                                   ),
                                   TextButton(
                                     onPressed: () {
-                                      if (nameToAdd !=
-                                          WordPair("Nameless", " ")) {
+                                      // if (nameToAdd !=
+                                      //     WordPair("Nameless", " ")) {
+                                      if (nameToAddString != "") {
                                         Navigator.pop(context, 'OK');
                                         appState.addPokemonName(
-                                            nameToAdd, pokemonIndex);
+                                            nameToAddString, pokemonIndex);
                                       }
                                     },
                                     child: const Text('OK'),
