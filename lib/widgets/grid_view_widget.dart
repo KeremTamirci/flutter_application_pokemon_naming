@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../pages/register_page.dart';
 import '../services/data_scraper.dart';
 import 'package:go_router/go_router.dart';
 
