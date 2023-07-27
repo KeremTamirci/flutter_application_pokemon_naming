@@ -58,23 +58,32 @@ Future<void> getPokemon() async {
 }
 
 Future<void> fillPokemonModel() async {
-  var url;
-  for (var i = 0; i < pokemonList.length; i++) {
-    url = pokemonList[i]["url"];
-    final response = await dio.get(url);
-    if (response.statusCode == 200) {
-      Pokemon pokemon1 = Pokemon.fromJson(response.data);
+  // var url;
+  // for (var i = 0; i < pokemonList.length; i++) {
+  //   url = pokemonList[i]["url"];
+  //   final response = await dio.get(url);
+  //   if (response.statusCode == 200) {
+  //     Pokemon pokemon1 = Pokemon.fromJson(response.data);
 
-      //// This was for one time only
-      // db.collection("/AllPokemon").add(response.data);
+  //     //// This was for one time only
+  //     // db.collection("/AllPokemon").add(response.data);
 
-      modelPokemonList.add(pokemon1);
-      unshuffledPokemonList.add(pokemon1);
+  //     modelPokemonList.add(pokemon1);
+  //     unshuffledPokemonList.add(pokemon1);
+  //     pokemonimgCount++;
+  //   } else {
+  //     print(response.statusCode);
+  //   }
+  // }
+
+  await db.collection("/AllPokemon").get().then((event) {
+    for (var doc in event.docs) {
+      Pokemon pokemonTemp = Pokemon.fromJson(doc.data());
+      modelPokemonList.add(pokemonTemp);
       pokemonimgCount++;
-    } else {
-      print(response.statusCode);
+      // print("${doc.id} => ${doc.data()["name"]}");
     }
-  }
+  });
 }
 
 Future<void> pokemonInit() async {

@@ -2,7 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/services/data_scraper.dart';
 import 'package:go_router/go_router.dart';
 
+import '../main.dart';
+import '../models/pokemon.dart';
+import 'register_page.dart';
+
 var allPokemonIndex = 0;
+var allPokemonList = [];
+
+Future<void> getAllPokemon() async {
+  await db.collection("/AllPokemon").get().then((event) {
+    for (var doc in event.docs) {
+      Pokemon pokemonTemp = Pokemon.fromJson(doc.data());
+      // modelUsersPokemon.add(pokemon2);
+      allPokemonList.add(pokemonTemp);
+      print("${doc.id} => ${doc.data()["name"]}");
+    }
+    // print("Model User's Pokemon list length: ${modelUsersPokemon.length}");
+  });
+}
 
 class OtherHomePage extends StatefulWidget {
   const OtherHomePage({super.key});
@@ -27,7 +44,7 @@ class _OtherHomePageState extends State<OtherHomePage> {
     return Scaffold(
       body: GridView.count(
         crossAxisCount: 2,
-        children: List.generate(pokemonList.length, (index) {
+        children: List.generate(allPokemonList.length, (index) {
           return Center(
             child: InkWell(
               onTap: () {
@@ -47,7 +64,7 @@ class _OtherHomePageState extends State<OtherHomePage> {
                   //   context,
                   //   MaterialPageRoute(builder: (context) => const DetailsPage()),
                   // );
-                  context.go('/details');
+                  // context.go('/details');
                 },
                 child: Card(
                   child: SizedBox(
@@ -60,16 +77,16 @@ class _OtherHomePageState extends State<OtherHomePage> {
                           child: Padding(
                             padding: const EdgeInsets.all(15),
                             child: Image.network(
-                              unshuffledPokemonList[index]
-                                  .sprites
-                                  .front_default,
+                              // unshuffledPokemonList[index]
+                              allPokemonList[index].sprites.front_default,
                               fit: BoxFit.fitWidth,
                             ),
                           ),
                         ),
                         Center(
                           child: Text(
-                            unshuffledPokemonList[index].name,
+                            // unshuffledPokemonList[index].name,
+                            allPokemonList[index].name,
                             style: style,
                           ),
                         ),
