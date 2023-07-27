@@ -6,11 +6,12 @@ import '../pages/register_page.dart';
 import '../services/data_scraper.dart';
 
 // Burada pokemon type'ında parametre tanımlayıp response'u buraya çek. Sonra buradan eriş o bilgiye.
+var historyDatabase = [];
+var favoritesDatabase = [];
 
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
   var history = <WordPair>[];
-  var historyDatabase = <String>[];
 
   void getNext() {
     history.add(current);
@@ -24,14 +25,13 @@ class MyAppState extends ChangeNotifier {
   }
 
   var favorites = <WordPair>[];
-  var favoritesDatabase = <String>[];
 
   void toggleFavorite() {
-    if (favorites.contains(current)) {
-      favorites.remove(current);
+    if (favoritesDatabase.contains(current.asPascalCase)) {
+      // favorites.remove(current);
       favoritesDatabase.remove(current.asPascalCase);
     } else {
-      favorites.add(current);
+      // favorites.add(current);
       favoritesDatabase.add(current.asPascalCase);
     }
     var userRef = db.collection('/Users').doc(uid);
@@ -41,12 +41,12 @@ class MyAppState extends ChangeNotifier {
   }
 
   void toggleFavoriteList(pair) {
-    if (favorites.contains(pair)) {
-      favorites.remove(pair);
-      favoritesDatabase.remove(pair.asPascalCase);
+    if (favoritesDatabase.contains(pair)) {
+      // favorites.remove(pair);
+      favoritesDatabase.remove(pair);
     } else {
-      favorites.add(pair);
-      favoritesDatabase.add(pair.asPascalCase);
+      // favorites.add(pair);
+      favoritesDatabase.add(pair);
     }
     var userRef = db.collection('/Users').doc(uid);
     userRef.set({"favorites": favoritesDatabase}, SetOptions(merge: true));

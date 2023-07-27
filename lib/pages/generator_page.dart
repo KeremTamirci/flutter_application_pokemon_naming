@@ -11,7 +11,7 @@ class GeneratorPage extends StatelessWidget {
     var pair = appState.current;
     // databaseTest();
     IconData icon;
-    if (appState.favorites.contains(pair)) {
+    if (favoritesDatabase.contains(pair.asPascalCase)) {
       icon = Icons.favorite;
     } else {
       icon = Icons.favorite_border;

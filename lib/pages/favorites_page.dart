@@ -11,7 +11,7 @@ class FavoritesPage extends StatelessWidget {
       color: theme.colorScheme.onBackground,
     );
     var appState = context.watch<MyAppState>();
-    if (appState.favorites.isEmpty) {
+    if (favoritesDatabase.isEmpty) {
       return Center(
         child: Text('No favorites yet.'),
       );
@@ -22,17 +22,17 @@ class FavoritesPage extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: Text(
             'You have '
-            '${appState.favorites.length} favorites:',
+            '${favoritesDatabase.length} favorites:',
             style: style,
           ),
         ),
-        for (var pair in appState.favorites)
+        for (var pair in favoritesDatabase)
           TextButton.icon(
               onPressed: () {
                 appState.toggleFavoriteList(pair);
               },
               icon: Icon(Icons.favorite),
-              label: Text(pair.asPascalCase)),
+              label: Text(pair)),
       ],
     );
   }

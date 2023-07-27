@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../viewmodel/my_app_state.dart';
+import '../viewmodel/my_app_state.dart';
 
 class HistoryPage extends StatelessWidget {
   @override
@@ -22,19 +23,19 @@ class HistoryPage extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: Text(
             'You have generated '
-            '${appState.history.length} words:',
+            '${historyDatabase.length} words:',
             style: style,
           ),
         ),
-        for (var pair in appState.history)
+        for (var pair in historyDatabase)
           TextButton.icon(
               onPressed: () {
                 appState.toggleFavoriteList(pair);
               },
-              icon: appState.favorites.contains(pair)
+              icon: favoritesDatabase.contains(pair)
                   ? Icon(Icons.favorite)
                   : SizedBox(),
-              label: Text(pair.asPascalCase)),
+              label: Text(pair)),
       ],
     );
   }

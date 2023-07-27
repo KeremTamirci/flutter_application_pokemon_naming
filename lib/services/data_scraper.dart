@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_application_1/models/pokemon.dart';
 
 import '../pages/register_page.dart';
+import '../viewmodel/my_app_state.dart';
 
 //import 'package:flutter_application_1/models/pokemon_test.dart';
 
@@ -99,5 +100,7 @@ Future<void> userInit() async {
   });
   await db.collection("/Users").doc(uid).get().then((event) {
     print("Doc data: ${event.data()}");
+    favoritesDatabase = event.data()!["favorites"];
+    historyDatabase = event.data()!["history"];
   });
 }
