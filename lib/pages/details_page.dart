@@ -29,12 +29,13 @@ class _DetailsPageState extends State<DetailsPage> {
     var appState = context.watch<MyAppState>();
 //    var mapLocation = pokemonMap[pokemonList[pokemonIndex]["name"]];
     // var imageUsed = modelPokemonList[pokemonIndex].sprites.front_default;
-    animatedImage = modelPokemonList[pokemonIndex].sprites.front_default;
+    // animatedImage = modelPokemonList[pokemonIndex].sprites.front_default;
+    animatedImage = modelUsersPokemon[pokemonIndex].sprites.front_default;
     return Scaffold(
       appBar: AppBar(
 //        title: Text(mapLocation["given_name"].asPascalCase),
         title: Text(
-          pokemonNames[pokemonIndex].asPascalCase,
+          pokemonNames[pokemonIndex],
         ),
       ),
       body: Center(

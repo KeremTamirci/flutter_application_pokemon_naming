@@ -77,11 +77,20 @@ class _TestPageState extends State<TestPage> {
                       TextButton(
                         onPressed: () async {
                           if (nameToAdd != WordPair("Nameless", " ")) {
+                            var pokemonStats =
+                                modelPokemonList[pokemonIndex].stats;
                             final user = <String, dynamic>{
                               "name": nameToAdd.asPascalCase,
-                              "img": modelPokemonList[length1]
-                                  .sprites
-                                  .front_default,
+                              "sprites": {
+                                "front_default": modelPokemonList[length1]
+                                    .sprites
+                                    .front_default,
+                              },
+                              "stats": [
+                                {"base_stat": pokemonStats[0].base_stat},
+                                {"base_stat": pokemonStats[1].base_stat},
+                                {"base_stat": pokemonStats[2].base_stat}
+                              ],
                             };
                             Navigator.pop(context, 'OK');
                             appState.addPokemonName(nameToAdd, length1);
@@ -97,15 +106,7 @@ class _TestPageState extends State<TestPage> {
                             // }).onError((e, _) =>
                             //         print("Error writing document: $e"));
                             db.collection("/Users/$uid/Pokemon").add(user);
-                            await db
-                                .collection("/Users/$uid/Pokemon")
-                                .get()
-                                .then((event) {
-                              for (var doc in event.docs) {
-                                print(event.docs.length);
-                                print("${doc.id} => ${doc.data()}");
-                              }
-                            });
+                            modelUsersPokemon.add(modelPokemonList[length1]);
                             setState(() {
                               count++;
                             });

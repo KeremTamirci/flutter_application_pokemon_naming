@@ -9,6 +9,7 @@ var pokemonList = [];
 var modelPokemonList = [];
 var unshuffledPokemonList = [];
 var pokemonNames = [];
+var modelUsersPokemon = [];
 
 var existingPokemonList = [];
 

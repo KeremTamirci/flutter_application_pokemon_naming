@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:email_validator/email_validator.dart';
 
 import '../main.dart';
+import '../models/pokemon.dart';
 import '../services/data_scraper.dart';
 import 'register_page.dart';
 
@@ -42,11 +43,16 @@ class _LoginPageState extends State<LoginPage> {
       isLoggedIn = true;
       await db.collection("/Users/$uid/Pokemon").get().then((event) {
         for (var doc in event.docs) {
-          print(event.docs.length);
+          // print(event.docs.length);
           count += 1;
           existingPokemonList.add(doc.data());
+          Pokemon pokemon2 = Pokemon.fromJson(doc.data());
+          print(pokemon2);
+          modelUsersPokemon.add(pokemon2);
+          pokemonNames.add(doc.data()["name"]);
           print("${doc.id} => ${doc.data()}");
         }
+        print("Model User's Pokemon list length: ${modelUsersPokemon.length}");
       });
       if (context.mounted) Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
