@@ -12,7 +12,7 @@ class HistoryPage extends StatelessWidget {
       color: theme.colorScheme.onBackground,
     );
     var appState = context.watch<MyAppState>();
-    if (appState.history.isEmpty) {
+    if (historyDatabase.isEmpty) {
       return Center(
         child: Text('No history yet.'),
       );
