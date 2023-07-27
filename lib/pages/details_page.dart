@@ -122,6 +122,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 onPressed: () {
                   // Navigator.pop(context);
                   context.go("/");
+                  // context.pop();
                 },
                 child: const Text('Go back!'),
               ),

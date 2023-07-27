@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_1/pages/details_page.dart';
 import 'package:flutter_application_1/pages/favorites_page.dart';
@@ -28,6 +30,9 @@ import 'package:go_router/go_router.dart';
 // Collection içine user_id tanımla.
 
 bool isLoggedIn = false;
+// For Firestore
+final db = FirebaseFirestore.instance;
+final FirebaseAuth auth = FirebaseAuth.instance;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -2,6 +2,7 @@ import 'package:cloud_firestore_platform_interface/src/set_options.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import '../main.dart';
 import '../pages/register_page.dart';
 import '../services/data_scraper.dart';
 

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,9 +6,6 @@ import 'package:go_router/go_router.dart';
 import '../main.dart';
 import 'login_page.dart';
 
-// For Firestore
-final db = FirebaseFirestore.instance;
-final FirebaseAuth auth = FirebaseAuth.instance;
 final User? currentUser = auth.currentUser;
 final uid = currentUser!.uid;
 String? emailid = currentUser!.email;

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_application_1/models/pokemon.dart';
 
+import '../main.dart';
 import '../pages/register_page.dart';
 import '../viewmodel/my_app_state.dart';
 
@@ -63,6 +64,9 @@ Future<void> fillPokemonModel() async {
     final response = await dio.get(url);
     if (response.statusCode == 200) {
       Pokemon pokemon1 = Pokemon.fromJson(response.data);
+
+      //// This was for one time only
+      // db.collection("/AllPokemon").add(response.data);
 
       modelPokemonList.add(pokemon1);
       unshuffledPokemonList.add(pokemon1);
