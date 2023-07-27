@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_application_1/models/pokemon.dart';
+
 //import 'package:flutter_application_1/models/pokemon_test.dart';
 
 var urlList = [];
@@ -8,6 +9,8 @@ var pokemonList = [];
 var modelPokemonList = [];
 var unshuffledPokemonList = [];
 var pokemonNames = [];
+
+var existingPokemonList = [];
 
 //var pokemonMap = {};
 final dio = Dio();

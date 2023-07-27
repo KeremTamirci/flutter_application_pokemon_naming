@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:email_validator/email_validator.dart';
 
 import '../main.dart';
+import '../services/data_scraper.dart';
+import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -38,6 +40,14 @@ class _LoginPageState extends State<LoginPage> {
           email: _controllerLoginMail.text.trim(),
           password: _controllerLoginPassword.text.trim());
       isLoggedIn = true;
+      await db.collection("/Users/$uid/Pokemon").get().then((event) {
+        for (var doc in event.docs) {
+          print(event.docs.length);
+          count += 1;
+          existingPokemonList.add(doc.data());
+          print("${doc.id} => ${doc.data()}");
+        }
+      });
       if (context.mounted) Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       isLoggedIn = false;

@@ -75,21 +75,37 @@ class _TestPageState extends State<TestPage> {
                         child: const Text('Cancel'),
                       ),
                       TextButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (nameToAdd != WordPair("Nameless", " ")) {
-                            Navigator.pop(context, 'OK');
-                            appState.addPokemonName(nameToAdd, length1);
-                            print("uid seen from pokemon page: $uid");
-                            db
-                                .collection("/Users/$uid/Pokemon")
-                                .doc(nameToAdd.asPascalCase)
-                                .set({
+                            final user = <String, dynamic>{
                               "name": nameToAdd.asPascalCase,
                               "img": modelPokemonList[length1]
                                   .sprites
                                   .front_default,
-                            }).onError((e, _) =>
-                                    print("Error writing document: $e"));
+                            };
+                            Navigator.pop(context, 'OK');
+                            appState.addPokemonName(nameToAdd, length1);
+                            print("uid seen from pokemon page: $uid");
+                            // db
+                            //     .collection("/Users/$uid/Pokemon")
+                            //     .doc(nameToAdd.asPascalCase)
+                            //     .set({
+                            //   "name": nameToAdd.asPascalCase,
+                            //   "img": modelPokemonList[length1]
+                            //       .sprites
+                            //       .front_default,
+                            // }).onError((e, _) =>
+                            //         print("Error writing document: $e"));
+                            db.collection("/Users/$uid/Pokemon").add(user);
+                            await db
+                                .collection("/Users/$uid/Pokemon")
+                                .get()
+                                .then((event) {
+                              for (var doc in event.docs) {
+                                print(event.docs.length);
+                                print("${doc.id} => ${doc.data()}");
+                              }
+                            });
                             setState(() {
                               count++;
                             });

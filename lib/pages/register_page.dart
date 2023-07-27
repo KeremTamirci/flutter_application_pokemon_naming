@@ -28,7 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
   late String mail = "";
   late String password = "";
 
-  void addToDatabase() {
+  void addToDatabase() async {
     final user = <String, dynamic>{
       "mail": emailid,
       "uid": uid,
@@ -38,7 +38,13 @@ class _RegisterPageState extends State<RegisterPage> {
     print("uid: $uid");
     print("mail: $emailid");
     // db.collection("Users").add(user);
-    db.collection("Users").doc(uid).set({"mail": emailid, "uid": uid});
+    //db.collection("Users").doc(uid).set({"mail": emailid, "uid": uid});
+    db.collection("Users").doc(uid).set(user);
+    await db.collection("Users/$uid/Pokemon").get().then((event) {
+      for (var doc in event.docs) {
+        print("${doc.id} => ${doc.data()}");
+      }
+    });
   }
 
   Future<void> authenticate() async {
