@@ -77,8 +77,7 @@ class _TestPageState extends State<TestPage> {
                       TextButton(
                         onPressed: () async {
                           if (nameToAdd != WordPair("Nameless", " ")) {
-                            var pokemonStats =
-                                modelPokemonList[pokemonIndex].stats;
+                            var pokemonStats = modelPokemonList[length1].stats;
                             final user = <String, dynamic>{
                               "name": nameToAdd.asPascalCase,
                               "sprites": {
