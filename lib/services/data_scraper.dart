@@ -15,6 +15,7 @@ var unshuffledPokemonList = [];
 var pokemonNames = [];
 var modelUsersPokemon = [];
 var documentIDList = [];
+var sharedPokemonIDList = [];
 
 var existingPokemonList = [];
 

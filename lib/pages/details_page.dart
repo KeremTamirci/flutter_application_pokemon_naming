@@ -84,6 +84,17 @@ class _DetailsPageState extends State<DetailsPage> {
             ),
             Wrap(children: [
               ElevatedButton(
+                onPressed: () {
+                  // Navigator.pop(context);
+                  context.go("/");
+                  // context.pop();
+                },
+                child: const Text('Go back!'),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              ElevatedButton(
                   onPressed: () {
                     showDialog(
                       context: context,
@@ -125,18 +136,23 @@ class _DetailsPageState extends State<DetailsPage> {
                     );
                   },
                   child: Text("Change Name")),
-              SizedBox(
-                width: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  // Navigator.pop(context);
-                  context.go("/");
-                  // context.pop();
-                },
-                child: const Text('Go back!'),
-              ),
             ]),
+            SizedBox(
+              height: 120,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Navigator.pop(context);
+                // context.go("/");
+                // context.pop();
+                appState.toggleShareList(
+                    documentIDList[pokemonIndex], pokemonIndex);
+                // sharedPokemonIDList.add(documentIDList[pokemonIndex]);
+              },
+              child: sharedPokemonIDList.contains(documentIDList[pokemonIndex])
+                  ? Text('Unshare')
+                  : Text('Share'),
+            ),
           ],
         ),
       ),

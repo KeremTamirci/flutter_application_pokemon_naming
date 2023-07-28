@@ -54,6 +54,15 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void toggleShareList(pokemonID, pokemonIndex) {
+    if (sharedPokemonIDList.contains(pokemonID)) {
+      sharedPokemonIDList.remove(pokemonID);
+    } else {
+      sharedPokemonIDList.add(pokemonID);
+    }
+    notifyListeners();
+  }
+
   void addPokemonName(pokemonName, index) {
 //    pokemonMap[pokemonList[index]["name"]]["given_name"] = pokemonName;
     if (index == length1) {
