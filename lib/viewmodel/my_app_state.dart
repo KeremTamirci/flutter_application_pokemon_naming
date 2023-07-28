@@ -63,7 +63,8 @@ class MyAppState extends ChangeNotifier {
       var pokemonShare = {
         "pokemon_id": pokemonID,
         "uid": uid,
-        "name": pokemonNames[pokemonIndex]
+        "name": pokemonNames[pokemonIndex],
+        "img": modelUsersPokemon[pokemonIndex].sprites.front_default,
       };
       db.collection("/SharedPokemon").doc(pokemonID).set(pokemonShare);
       // .add({"pokemon_id": pokemonID, "uid": uid});

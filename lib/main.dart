@@ -7,6 +7,7 @@ import 'package:flutter_application_1/pages/forgot_password.dart';
 import 'package:flutter_application_1/pages/history_page.dart';
 import 'package:flutter_application_1/pages/other_home_page.dart';
 import 'package:flutter_application_1/pages/pokemon_page.dart';
+import 'package:flutter_application_1/pages/shared_pokemon_page.dart';
 
 import 'firebase_options.dart';
 import 'pages/login_page.dart';
@@ -104,6 +105,12 @@ final GoRouter _router = GoRouter(
           path: 'otherhome',
           builder: (BuildContext context, GoRouterState state) {
             return OtherHomePage();
+          },
+        ),
+        GoRoute(
+          path: 'sharedpokemon',
+          builder: (BuildContext context, GoRouterState state) {
+            return SharedPokemonPage();
           },
         ),
       ],

@@ -37,7 +37,11 @@ class _TestPageState extends State<TestPage> {
     return Scaffold(
       body: ColoredBox(
         color: theme.colorScheme.surfaceVariant,
-        child: GridViewWidget(style: style),
+        child: GridViewWidget(
+          style: style,
+          modelList: modelUsersPokemon,
+          gridLength: length1,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: SizedBox(
