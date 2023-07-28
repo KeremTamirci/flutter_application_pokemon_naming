@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/services/data_scraper.dart';
 import 'package:go_router/go_router.dart';
 
 import '../main.dart';
 import '../models/pokemon.dart';
-import 'register_page.dart';
 
 var allPokemonIndex = 0;
 var allPokemonList = [];
