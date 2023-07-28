@@ -74,7 +74,9 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                     Center(
                       child: Text(
                         // existingPokemonList[index]["name"],
-                        pokemonNames[index],
+                        widget.isShared
+                            ? widget.modelList[index]["name"]
+                            : pokemonNames[index],
                         style: widget.style,
                       ),
                     ),

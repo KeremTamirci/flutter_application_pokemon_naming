@@ -54,7 +54,7 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void toggleShareList(pokemonID, pokemonIndex) {
+  void toggleShareList(pokemonID, pokemonIndex) async {
     if (sharedPokemonIDList.contains(pokemonID)) {
       sharedPokemonIDList.remove(pokemonID);
       db.collection("/SharedPokemon").doc(pokemonID).delete();
@@ -67,6 +67,10 @@ class MyAppState extends ChangeNotifier {
         "img": modelUsersPokemon[pokemonIndex].sprites.front_default,
       };
       db.collection("/SharedPokemon").doc(pokemonID).set(pokemonShare);
+      sharedPokemonList.add({
+        "name": pokemonNames[pokemonIndex],
+        "img": modelUsersPokemon[pokemonIndex].sprites.front_default
+      });
       // .add({"pokemon_id": pokemonID, "uid": uid});
     }
     notifyListeners();

@@ -112,7 +112,13 @@ class _TestPageState extends State<TestPage> {
                             //       .front_default,
                             // }).onError((e, _) =>
                             //         print("Error writing document: $e"));
-                            db.collection("/Users/$uid/Pokemon").add(user);
+                            db
+                                .collection("/Users/$uid/Pokemon")
+                                .add(user)
+                                .then((value) {
+                              documentIDList.add(value.id);
+                            });
+
                             modelUsersPokemon.add(modelPokemonList[length1]);
                             setState(() {
                               count++;
