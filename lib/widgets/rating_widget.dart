@@ -11,7 +11,7 @@ class RatingDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 //    var mapLocation = pokemonMap[pokemonList[pokemonIndex]["name"]]["stats"];
-    var pokemonStats = modelPokemonList[pokemonIndex].stats;
+    var pokemonStats = modelUsersPokemon[pokemonIndex].stats;
     final theme = Theme.of(context);
     final style = theme.textTheme.headlineSmall!.copyWith(
       color: theme.colorScheme.onBackground,

@@ -7,6 +7,8 @@ import '../pages/generator_page.dart';
 
 import 'package:flutter/material.dart';
 
+import 'other_home_page.dart';
+
 class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -115,8 +117,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           ListTile(
             title: const Text('All Pokémon'),
-            onTap: () {
+            onTap: () async {
               // Update the state of the app
+              await getAllPokemon();
               context.go("/otherhome");
               // Then close the drawer
               context.pop();

@@ -1,9 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_1/pages/details_page.dart';
 import 'package:flutter_application_1/pages/favorites_page.dart';
+import 'package:flutter_application_1/pages/forgot_password.dart';
 import 'package:flutter_application_1/pages/history_page.dart';
 import 'package:flutter_application_1/pages/other_home_page.dart';
 import 'package:flutter_application_1/pages/pokemon_page.dart';
 
+import 'firebase_options.dart';
+import 'pages/login_page.dart';
+import 'pages/register_page.dart';
 import 'services/data_scraper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,9 +28,20 @@ import 'package:go_router/go_router.dart';
 // Firebase entegrasyonu, login, şifremi unuttum, register vb.
 // Firebase üzerinden modellerden Pokemonları kaydetme. (Kullanıcıya özel / keşfet sayfası (community))
 // Collection içine user_id tanımla.
+
+bool isLoggedIn = false;
+// For Firestore
+final db = FirebaseFirestore.instance;
+final FirebaseAuth auth = FirebaseAuth.instance;
+
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   getHttp();
   await pokemonInit();
+  // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   runApp(MyApp());
 }
 
@@ -33,9 +51,25 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return MyHomePage();
+        if (isLoggedIn) {
+          return MyHomePage();
+        } else {
+          return LoginPage();
+        }
       },
       routes: <RouteBase>[
+        GoRoute(
+          path: 'register',
+          builder: (BuildContext context, GoRouterState state) {
+            return RegisterPage();
+          },
+        ),
+        GoRoute(
+          path: 'forgotpassword',
+          builder: (BuildContext context, GoRouterState state) {
+            return ForgotPassword();
+          },
+        ),
         GoRoute(
           path: 'favorites',
           builder: (BuildContext context, GoRouterState state) {

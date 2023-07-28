@@ -1,13 +1,16 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/register_page.dart';
 import 'package:flutter_application_1/services/data_scraper.dart';
 import 'package:provider/provider.dart';
 
+import '../main.dart';
 import '../viewmodel/my_app_state.dart';
 import '../widgets/favorite_list_dialog.dart';
 import '../widgets/grid_view_widget.dart';
 
 var nameToAdd = WordPair("Nameless", " ");
+var nameToAddString = "";
 
 class TestPage extends StatefulWidget {
   @override
@@ -29,6 +32,7 @@ class _TestPageState extends State<TestPage> {
       length1 = pokemonimgCount;
     }
     nameToAdd = WordPair("Nameless", " ");
+    nameToAddString = "";
 
     return Scaffold(
       body: ColoredBox(
@@ -36,7 +40,7 @@ class _TestPageState extends State<TestPage> {
         child: GridViewWidget(style: style),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Container(
+      floatingActionButton: SizedBox(
         height: 75,
         width: 100,
         child: FloatingActionButton(
@@ -74,10 +78,38 @@ class _TestPageState extends State<TestPage> {
                         child: const Text('Cancel'),
                       ),
                       TextButton(
-                        onPressed: () {
-                          if (nameToAdd != WordPair("Nameless", " ")) {
+                        onPressed: () async {
+                          // if (nameToAdd != WordPair("Nameless", " ")) {
+                          if (nameToAddString != "") {
+                            var pokemonStats = modelPokemonList[length1].stats;
+                            final user = <String, dynamic>{
+                              "name": nameToAddString,
+                              "sprites": {
+                                "front_default": modelPokemonList[length1]
+                                    .sprites
+                                    .front_default,
+                              },
+                              "stats": [
+                                {"base_stat": pokemonStats[0].base_stat},
+                                {"base_stat": pokemonStats[1].base_stat},
+                                {"base_stat": pokemonStats[2].base_stat}
+                              ],
+                            };
                             Navigator.pop(context, 'OK');
-                            appState.addPokemonName(nameToAdd, length1);
+                            appState.addPokemonName(nameToAddString, length1);
+                            print("uid seen from pokemon page: $uid");
+                            // db
+                            //     .collection("/Users/$uid/Pokemon")
+                            //     .doc(nameToAdd.asPascalCase)
+                            //     .set({
+                            //   "name": nameToAdd.asPascalCase,
+                            //   "img": modelPokemonList[length1]
+                            //       .sprites
+                            //       .front_default,
+                            // }).onError((e, _) =>
+                            //         print("Error writing document: $e"));
+                            db.collection("/Users/$uid/Pokemon").add(user);
+                            modelUsersPokemon.add(modelPokemonList[length1]);
                             setState(() {
                               count++;
                             });

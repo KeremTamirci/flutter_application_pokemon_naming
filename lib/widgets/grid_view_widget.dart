@@ -52,19 +52,17 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                       child: Padding(
                         padding: const EdgeInsets.all(15),
                         child: Image.network(
-                          modelPokemonList[index].sprites.front_default,
-                          // pokemonMap[pokemonList[index]["name"]]["img"],
-                          // pokemonimgList[index],
+                          // existingPokemonList[index]["img"],
+                          // modelPokemonList[index].sprites.front_default,
+                          modelUsersPokemon[index].sprites.front_default,
                           fit: BoxFit.fitWidth,
                         ),
                       ),
                     ),
                     Center(
                       child: Text(
-                        pokemonNames[index].asPascalCase,
-                        // pokemonMap[pokemonList[index]["name"]]["given_name"]
-                        //.asPascalCase,
-                        // pokemonNameList[index].asPascalCase,
+                        // existingPokemonList[index]["name"],
+                        pokemonNames[index],
                         style: widget.style,
                       ),
                     ),

@@ -9,9 +9,9 @@ class GeneratorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     var pair = appState.current;
-
+    // databaseTest();
     IconData icon;
-    if (appState.favorites.contains(pair)) {
+    if (favoritesDatabase.contains(pair.asPascalCase)) {
       icon = Icons.favorite;
     } else {
       icon = Icons.favorite_border;

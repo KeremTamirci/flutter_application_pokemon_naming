@@ -11,7 +11,7 @@ class HistoryPage extends StatelessWidget {
       color: theme.colorScheme.onBackground,
     );
     var appState = context.watch<MyAppState>();
-    if (appState.history.isEmpty) {
+    if (historyDatabase.isEmpty) {
       return Center(
         child: Text('No history yet.'),
       );
@@ -22,19 +22,19 @@ class HistoryPage extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: Text(
             'You have generated '
-            '${appState.history.length} words:',
+            '${historyDatabase.length} words:',
             style: style,
           ),
         ),
-        for (var pair in appState.history)
+        for (var pair in historyDatabase)
           TextButton.icon(
               onPressed: () {
                 appState.toggleFavoriteList(pair);
               },
-              icon: appState.favorites.contains(pair)
+              icon: favoritesDatabase.contains(pair)
                   ? Icon(Icons.favorite)
                   : SizedBox(),
-              label: Text(pair.asPascalCase)),
+              label: Text(pair)),
       ],
     );
   }

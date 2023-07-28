@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1073091193746",
+    "project_id": "fir-pokemon-app-flutter",
+    "storage_bucket": "fir-pokemon-app-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073091193746:android:d15500eb40164abf742f4b",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073091193746-spacql8roau8agb5dte3a9vf56qsetm8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJHCwymW78OFytiTxGldQ_DWTmVwQl8TM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073091193746-spacql8roau8agb5dte3a9vf56qsetm8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
