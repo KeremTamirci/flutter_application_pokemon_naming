@@ -120,4 +120,9 @@ Future<void> userInit() async {
     favoritesDatabase = event.data()!["favorites"];
     historyDatabase = event.data()!["history"];
   });
+  await db.collection("SharedPokemon").get().then((value) {
+    for (var doc in value.docs) {
+      sharedPokemonIDList.add(doc.id);
+    }
+  });
 }

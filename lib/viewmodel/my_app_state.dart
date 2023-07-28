@@ -57,8 +57,16 @@ class MyAppState extends ChangeNotifier {
   void toggleShareList(pokemonID, pokemonIndex) {
     if (sharedPokemonIDList.contains(pokemonID)) {
       sharedPokemonIDList.remove(pokemonID);
+      db.collection("/SharedPokemon").doc(pokemonID).delete();
     } else {
       sharedPokemonIDList.add(pokemonID);
+      var pokemonShare = {
+        "pokemon_id": pokemonID,
+        "uid": uid,
+        "name": pokemonNames[pokemonIndex]
+      };
+      db.collection("/SharedPokemon").doc(pokemonID).set(pokemonShare);
+      // .add({"pokemon_id": pokemonID, "uid": uid});
     }
     notifyListeners();
   }
