@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter_application_1/services/data_scraper.dart';
 import 'package:flutter_application_1/widgets/animated_opacity.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
+import '../main.dart';
 import '../viewmodel/my_app_state.dart';
 import '../pages/pokemon_page.dart';
 import '../widgets/favorite_list_dialog.dart';
@@ -11,6 +13,7 @@ import '../widgets/grid_view_widget.dart';
 import '../widgets/rating_widget.dart';
 import 'package:go_router/go_router.dart';
 import '../widgets/animated_image.dart';
+import 'register_page.dart';
 
 // Base experience ve weight de eklenebilir buraya value olarak. Direkt erişim var bunlara.
 
@@ -86,32 +89,38 @@ class _DetailsPageState extends State<DetailsPage> {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                            title:
-                                const Text('Change the name of your Pokemon!'),
-                            content: Wrap(
-                                alignment: WrapAlignment.center,
-                                children: [
-                                  FavoriteListDialog(appState: appState),
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context, 'Cancel');
-                                      //context.go("/");
-                                    },
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      // if (nameToAdd !=
-                                      //     WordPair("Nameless", " ")) {
-                                      if (nameToAddString != "") {
-                                        Navigator.pop(context, 'OK');
-                                        appState.addPokemonName(
-                                            nameToAddString, pokemonIndex);
-                                      }
-                                    },
-                                    child: const Text('OK'),
-                                  ),
-                                ]));
+                          title: const Text('Change the name of your Pokemon!'),
+                          content: Wrap(
+                            alignment: WrapAlignment.center,
+                            children: [
+                              FavoriteListDialog(appState: appState),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context, 'Cancel');
+                                  //context.go("/");
+                                },
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  // if (nameToAdd !=
+                                  //     WordPair("Nameless", " ")) {
+                                  if (nameToAddString != "") {
+                                    Navigator.pop(context, 'OK');
+                                    appState.addPokemonName(
+                                        nameToAddString, pokemonIndex);
+                                  }
+                                  var data = {"name": nameToAddString};
+                                  db
+                                      .collection("/Users/$uid/Pokemon")
+                                      .doc(documentIDList[pokemonIndex])
+                                      .set(data, SetOptions(merge: true));
+                                },
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          ),
+                        );
                       },
                     );
                   },

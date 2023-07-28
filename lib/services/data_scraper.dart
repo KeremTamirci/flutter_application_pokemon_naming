@@ -14,6 +14,7 @@ var modelPokemonList = [];
 var unshuffledPokemonList = [];
 var pokemonNames = [];
 var modelUsersPokemon = [];
+var documentIDList = [];
 
 var existingPokemonList = [];
 
@@ -105,7 +106,9 @@ Future<void> userInit() async {
       existingPokemonList.add(doc.data());
       Pokemon pokemon2 = Pokemon.fromJson(doc.data());
       // print(pokemon2);
+      print("Document id: ${doc.id}");
       modelUsersPokemon.add(pokemon2);
+      documentIDList.add(doc.id);
       pokemonNames.add(doc.data()["name"]);
       // print("${doc.id} => ${doc.data()}");
     }
