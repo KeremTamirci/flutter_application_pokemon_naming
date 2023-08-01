@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:english_words/english_words.dart';
 import 'package:flutter_application_1/services/data_scraper.dart';
 import 'package:flutter_application_1/widgets/animated_opacity.dart';
 import 'package:provider/provider.dart';

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 
 import '../main.dart';
+import '../services/data_scraper.dart';
 import 'login_page.dart';
 
 final User? currentUser = auth.currentUser;
@@ -28,6 +29,8 @@ class _RegisterPageState extends State<RegisterPage> {
     final user = <String, dynamic>{
       "mail": emailid,
       "uid": uid,
+      "history": [],
+      "favorites": [],
     };
 
     print("user: ${currentUser.toString()}");
@@ -36,6 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
     // db.collection("Users").add(user);
     //db.collection("Users").doc(uid).set({"mail": emailid, "uid": uid});
     db.collection("Users").doc(uid).set(user);
+    db.collection("Users/$uid/Pokemon");
     await db.collection("Users/$uid/Pokemon").get().then((event) {
       for (var doc in event.docs) {
         print("${doc.id} => ${doc.data()}");
@@ -70,6 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
       );
       isLoggedIn = true;
       addToDatabase();
+      await userInit();
 
       print("after credential");
     } on FirebaseAuthException catch (e) {

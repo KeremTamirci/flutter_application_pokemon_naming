@@ -15,6 +15,8 @@ var unshuffledPokemonList = [];
 var pokemonNames = [];
 var modelUsersPokemon = [];
 var documentIDList = [];
+
+var sharedPokemonList = [];
 var sharedPokemonIDList = [];
 
 var existingPokemonList = [];
@@ -86,6 +88,13 @@ Future<void> fillPokemonModel() async {
       // print("${doc.id} => ${doc.data()["name"]}");
     }
   });
+
+  await db.collection("/SharedPokemon").get().then((value) {
+    for (var doc in value.docs) {
+      sharedPokemonList
+          .add({"name": doc.data()["name"], "img": doc.data()["img"]});
+    }
+  });
 }
 
 Future<void> pokemonInit() async {
@@ -119,5 +128,10 @@ Future<void> userInit() async {
     print("Doc data: ${event.data()}");
     favoritesDatabase = event.data()!["favorites"];
     historyDatabase = event.data()!["history"];
+  });
+  await db.collection("SharedPokemon").get().then((value) {
+    for (var doc in value.docs) {
+      sharedPokemonIDList.add(doc.id);
+    }
   });
 }

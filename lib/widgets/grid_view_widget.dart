@@ -5,12 +5,20 @@ import 'package:go_router/go_router.dart';
 var pokemonIndex = 0;
 
 class GridViewWidget extends StatefulWidget {
-  const GridViewWidget({
+  GridViewWidget({
     super.key,
     required this.style,
+    required this.modelList,
+    required this.gridLength,
+    this.isClickable = true,
+    this.isShared = false,
   });
 
   final TextStyle style;
+  final List<dynamic> modelList;
+  int gridLength;
+  bool isClickable;
+  bool isShared;
 
   @override
   State<GridViewWidget> createState() => _GridViewWidgetState();
@@ -28,7 +36,7 @@ class _GridViewWidgetState extends State<GridViewWidget> {
 
     return GridView.count(
       crossAxisCount: 2,
-      children: List.generate(length1, (index) {
+      children: List.generate(widget.gridLength, (index) {
         return Center(
           child: InkWell(
             onTap: () {
@@ -38,7 +46,9 @@ class _GridViewWidgetState extends State<GridViewWidget> {
               //   context,
               //   MaterialPageRoute(builder: (context) => const DetailsPage()),
               // );
-              context.go('/details');
+              if (widget.isClickable) {
+                context.go('/details');
+              }
             },
             child: Card(
               color: theme.colorScheme.surfaceVariant,
@@ -54,7 +64,9 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                         child: Image.network(
                           // existingPokemonList[index]["img"],
                           // modelPokemonList[index].sprites.front_default,
-                          modelUsersPokemon[index].sprites.front_default,
+                          widget.isShared
+                              ? widget.modelList[index]["img"]
+                              : widget.modelList[index].sprites.front_default,
                           fit: BoxFit.fitWidth,
                         ),
                       ),
@@ -62,7 +74,9 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                     Center(
                       child: Text(
                         // existingPokemonList[index]["name"],
-                        pokemonNames[index],
+                        widget.isShared
+                            ? widget.modelList[index]["name"]
+                            : pokemonNames[index],
                         style: widget.style,
                       ),
                     ),

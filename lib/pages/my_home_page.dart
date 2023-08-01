@@ -126,10 +126,11 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           ),
           ListTile(
-            title: const Text('Placeholder'),
+            title: const Text('Shared Pokémon'),
             onTap: () {
               // Update the state of the app
               // Then close the drawer
+              context.go("/sharedpokemon");
               context.pop();
             },
           ),
