@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_application_1/models/pokemon.dart';
 
 import '../main.dart';
+import '../pages/other_home_page.dart';
 import '../pages/register_page.dart';
 import '../viewmodel/my_app_state.dart';
 
@@ -101,6 +102,7 @@ Future<void> pokemonInit() async {
   await getPokemon();
   await fillURL();
   await fillPokemonModel();
+  await getAllPokemon();
 //  pokemonList.shuffle();
   modelPokemonList.shuffle();
 //  print(modelPokemonList.length)s;

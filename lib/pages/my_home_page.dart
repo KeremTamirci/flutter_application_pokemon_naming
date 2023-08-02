@@ -119,7 +119,6 @@ class _MyHomePageState extends State<MyHomePage> {
             title: const Text('All Pokémon'),
             onTap: () async {
               // Update the state of the app
-              await getAllPokemon();
               context.go("/otherhome");
               // Then close the drawer
               context.pop();

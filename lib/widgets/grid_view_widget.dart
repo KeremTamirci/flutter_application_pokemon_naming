@@ -16,9 +16,9 @@ class GridViewWidget extends StatefulWidget {
 
   final TextStyle style;
   final List<dynamic> modelList;
-  int gridLength;
-  bool isClickable;
-  bool isShared;
+  final int gridLength;
+  final bool isClickable;
+  final bool isShared;
 
   @override
   State<GridViewWidget> createState() => _GridViewWidgetState();
@@ -56,18 +56,20 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                 height: 200,
                 child: Wrap(
                   children: [
-                    SizedBox(
-                      width: 200,
-                      height: 155,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Image.network(
-                          // existingPokemonList[index]["img"],
-                          // modelPokemonList[index].sprites.front_default,
-                          widget.isShared
-                              ? widget.modelList[index]["img"]
-                              : widget.modelList[index].sprites.front_default,
-                          fit: BoxFit.fitWidth,
+                    Center(
+                      child: SizedBox(
+                        width: 200,
+                        height: 155,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Image.network(
+                            // existingPokemonList[index]["img"],
+                            // modelPokemonList[index].sprites.front_default,
+                            widget.isShared
+                                ? widget.modelList[index]["img"]
+                                : widget.modelList[index].sprites.front_default,
+                            fit: BoxFit.fitWidth,
+                          ),
                         ),
                       ),
                     ),
