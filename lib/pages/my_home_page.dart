@@ -7,8 +7,6 @@ import '../pages/generator_page.dart';
 
 import 'package:flutter/material.dart';
 
-import 'other_home_page.dart';
-
 class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -138,6 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onTap: () {
               // Update the state of the app
               // Then close the drawer
+              context.go("/testingpage");
               context.pop();
             },
           ),

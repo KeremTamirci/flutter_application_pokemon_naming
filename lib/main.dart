@@ -12,6 +12,7 @@ import 'package:flutter_application_1/pages/shared_pokemon_page.dart';
 import 'firebase_options.dart';
 import 'pages/login_page.dart';
 import 'pages/register_page.dart';
+import 'pages/test_page.dart';
 import 'services/data_scraper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -111,6 +112,12 @@ final GoRouter _router = GoRouter(
           path: 'sharedpokemon',
           builder: (BuildContext context, GoRouterState state) {
             return SharedPokemonPage();
+          },
+        ),
+        GoRoute(
+          path: 'testingpage',
+          builder: (BuildContext context, GoRouterState state) {
+            return TestingPage();
           },
         ),
       ],
