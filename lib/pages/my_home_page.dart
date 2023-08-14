@@ -140,6 +140,18 @@ class _MyHomePageState extends State<MyHomePage> {
               context.pop();
             },
           ),
+          SizedBox(
+            height: 500,
+          ),
+          ListTile(
+            title: const Text('Sign Out'),
+            onTap: () {
+              // Update the state of the app
+              // Then close the drawer
+              // context.go("/testingpage");
+              context.pop();
+            },
+          ),
         ],
       ),
     );

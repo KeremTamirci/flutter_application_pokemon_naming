@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:email_validator/email_validator.dart';
 
@@ -42,6 +43,17 @@ class _LoginPageState extends State<LoginPage> {
       await userInit();
 
       // Token yazma işi burada yapılacak.
+      var storage = FlutterSecureStorage();
+      String? token = await FirebaseAuth.instance.currentUser!.getIdToken();
+      print(token.toString());
+
+      storage.write(key: "user_token", value: token.toString());
+      storage.write(key: "test", value: "test");
+
+      var tokenFromStorage = await storage.read(key: "user_token") ?? '';
+      print(tokenFromStorage);
+      var testvar = await storage.read(key: "test") ?? '';
+      print(testvar);
 
       if (context.mounted) Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
