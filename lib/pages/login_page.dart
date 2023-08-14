@@ -40,6 +40,9 @@ class _LoginPageState extends State<LoginPage> {
           password: _controllerLoginPassword.text.trim());
       isLoggedIn = true;
       await userInit();
+
+      // Token yazma işi burada yapılacak.
+
       if (context.mounted) Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       isLoggedIn = false;
@@ -173,7 +176,6 @@ class _LoginPageState extends State<LoginPage> {
 
                         await authenticate();
                         if (context.mounted) context.go("/");
-                        // Bunu başka nasıl yapabilirim bilmiyorum
                       },
                       child: Text("Log in")),
                 ),
