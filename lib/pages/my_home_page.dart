@@ -1,3 +1,7 @@
+import 'dart:html';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_application_1/main.dart';
 import 'package:go_router/go_router.dart';
 
 import '../pages/history_page.dart';
@@ -6,6 +10,8 @@ import '../pages/pokemon_page.dart';
 import '../pages/generator_page.dart';
 
 import 'package:flutter/material.dart';
+
+import 'login_page.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -145,11 +151,15 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           ListTile(
             title: const Text('Sign Out'),
-            onTap: () {
+            onTap: () async {
               // Update the state of the app
               // Then close the drawer
               // context.go("/testingpage");
-              context.pop();
+              await FirebaseAuth.instance.signOut();
+              isLoggedIn = false;
+              storage.deleteAll();
+              context.go("/");
+              // context.pop();
             },
           ),
         ],

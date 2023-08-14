@@ -7,6 +7,8 @@ import 'package:email_validator/email_validator.dart';
 import '../main.dart';
 import '../services/data_scraper.dart';
 
+var storage = FlutterSecureStorage();
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -43,13 +45,13 @@ class _LoginPageState extends State<LoginPage> {
       await userInit();
 
       // Token yazma işi burada yapılacak.
-      var storage = FlutterSecureStorage();
       String? token = await FirebaseAuth.instance.currentUser!.getIdToken();
       print(token.toString());
 
       storage.write(key: "user_token", value: token.toString());
       storage.write(key: "test", value: "test");
 
+      // Log out olup tekrar girmeye çalışınca patlıyor burası
       var tokenFromStorage = await storage.read(key: "user_token") ?? '';
       print(tokenFromStorage);
       var testvar = await storage.read(key: "test") ?? '';
