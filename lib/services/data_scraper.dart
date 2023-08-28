@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application_1/models/pokemon.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../main.dart';
 import '../pages/other_home_page.dart';
@@ -105,6 +107,19 @@ Future<void> pokemonInit() async {
   await getAllPokemon();
 //  pokemonList.shuffle();
   modelPokemonList.shuffle();
+
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  String mailFromShared = prefs.getString("mail") ?? "";
+  String passwordFromShared = prefs.getString("password") ?? "";
+
+  if (mailFromShared != "") {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: mailFromShared, password: passwordFromShared);
+    isLoggedIn = true;
+    await userInit();
+  }
+
 //  print(modelPokemonList.length)s;
 
   print("Done");

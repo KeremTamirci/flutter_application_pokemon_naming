@@ -3,6 +3,7 @@ import 'dart:html';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application_1/main.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../pages/history_page.dart';
 import '../pages/favorites_page.dart';
@@ -158,6 +159,9 @@ class _MyHomePageState extends State<MyHomePage> {
               await FirebaseAuth.instance.signOut();
               isLoggedIn = false;
               storage.deleteAll();
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.remove('mail');
+              prefs.remove('password');
               context.go("/");
               // context.pop();
             },

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../main.dart';
 import '../services/data_scraper.dart';
@@ -38,24 +39,47 @@ class _LoginPageState extends State<LoginPage> {
             ));
 
     try {
+      // print("buraya girizyoz");
+      // await FirebaseAuth.instance.signInWithCustomToken(
+      //     "eyJhbGciOiJSUzI1NiIsImtpZCI6IjYzODBlZjEyZjk1ZjkxNmNhZDdhNGNlMzg4ZDJjMmMzYzIzMDJmZGUiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZmlyLXBva2Vtb24tYXBwLWZsdXR0ZXIiLCJhdWQiOiJmaXItcG9rZW1vbi1hcHAtZmx1dHRlciIsImF1dGhfdGltZSI6MTY5Mjg4MjcyNSwidXNlcl9pZCI6IjVHenZUY0hrZ1RkQzVBRGdobDRsRTFub3VNNjMiLCJzdWIiOiI1R3p2VGNIa2dUZEM1QURnaGw0bEUxbm91TTYzIiwiaWF0IjoxNjkyODgyNzI1LCJleHAiOjE2OTI4ODYzMjUsImVtYWlsIjoibWFpbDEyQG1haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbIm1haWwxMkBtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.lQOF336_kZEfkTyesCSDpS7mJQ3_Bcb1oX7BpdTAlukU_9wjjwt4j1p2KPh5KjrOl_DX01dd50JICJRfeYlloqjfkWOT9F77oKckkCePFbzWRWOiqu3lTrsJS-aPlSAOwwHntgsEJE4Onx9fSEHS2mXamChje8dOtVo92q-74bgOOlRtDt0PxyB6EN6aGdUgT0JAqQ19Wy1sbr8aGFwbhmtGNm0cjt4AoCfQGNSbpXWJJJdLgTO6LYku0ApQPNKIN8m4VCZdmRPFVPHd2pronj4rbNoymjh3C89pwXLxTJebCFMku8QdSTyE3qeBwbC77DkUimqiqWLkgM3d7GVBiw");
+      // print("Buraya da girizyoz");
+
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _controllerLoginMail.text.trim(),
           password: _controllerLoginPassword.text.trim());
       isLoggedIn = true;
+      await pokemonInit();
       await userInit();
 
       // Token yazma işi burada yapılacak.
       String? token = await FirebaseAuth.instance.currentUser!.getIdToken();
-      print(token.toString());
+      // print(token.toString());
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      prefs.setString("token", token.toString());
+      prefs.setString("mail", _controllerLoginMail.text.trim());
+      prefs.setString("password", _controllerLoginPassword.text.trim());
 
       storage.write(key: "user_token", value: token.toString());
       storage.write(key: "test", value: "test");
 
+      String tokenFromShared = prefs.getString("token") ?? 'No data found';
+      String mailFromShared = prefs.getString("mail") ?? "";
+      String passwordFromShared = prefs.getString("password") ?? "";
+      print("Token from shared: $tokenFromShared");
+      print("Mail from shared: $mailFromShared");
+      print("Password from shared: $passwordFromShared");
+
+      // await FirebaseAuth.instance.signInWithEmailAndPassword(
+      //     email: mailFromShared, password: passwordFromShared);
+      // isLoggedIn = true;
+      // await userInit();
+
       // Log out olup tekrar girmeye çalışınca patlıyor burası
-      var tokenFromStorage = await storage.read(key: "user_token") ?? '';
-      print(tokenFromStorage);
-      var testvar = await storage.read(key: "test") ?? '';
-      print(testvar);
+      // var tokenFromStorage = await storage.read(key: "user_token") ?? '';
+      // print(tokenFromStorage);
+      // var testvar = await storage.read(key: "test") ?? '';
+      // print(testvar);
 
       if (context.mounted) Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
